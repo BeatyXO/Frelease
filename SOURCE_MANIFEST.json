@@ -94,11 +94,11 @@
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
     },
     "VALIDATION_REPORT.md": {
-      "bytes": 3695,
-      "sha256": "bfe2b922ef361dbf5470328d313c95f39abeaf063784e6de941b15dd28a8e74c"
+      "bytes": 3758,
+      "sha256": "561fbd069984b1eadcf7291d0f02ef57f292b8da5ba18a8109ae095f6c43e6fb"
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
-      "bytes": 4853,
+      "bytes": 0,
       "sha256": "b02b926c1daa86740cd2f96feddc8680a3bc2cafc44caed3e2f136ac4cee3e09"
     },
     "web/app/candidate/new/page.tsx": {
@@ -110,7 +110,7 @@
       "sha256": "39561cfa6d81c082110e52dea106b0f4e6fca5f26d2317a0dcdcb843f5df1129"
     },
     "web/app/history/[policyKey]/page.tsx": {
-      "bytes": 1772,
+      "bytes": 0,
       "sha256": "bc1698a6af5b89df3230d0cda5bd36ce6a43843cd994c23145ef80b226bcb4b0"
     },
     "web/app/layout.tsx": {
@@ -122,7 +122,7 @@
       "sha256": "b29c689614d8477e1af09471acdede303b81ab4d0aa91fc8ab51c97872ddbb45"
     },
     "web/app/policy/[policyKey]/page.tsx": {
-      "bytes": 3075,
+      "bytes": 0,
       "sha256": "69b7d7e1c44dd6214d503e0472f777b9c2886a0d03658ad007d8c5f367b3e0d1"
     },
     "web/app/policy/new/page.tsx": {

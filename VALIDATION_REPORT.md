@@ -11,7 +11,7 @@ The green results below are GitHub Actions results for source commit `683ff7cbe1
 - `pytest -q tests/unit` and `pytest -q tests/direct`: **NOT RUN TO COMPLETION** — the installed pytest launcher cannot import `_pytest.config` (`pytest` package is missing/corrupt in this Python environment).
 - GenVM lint: **PASS** for both contracts when `PYTHONIOENCODING=utf-8`; SDK validation is **BLOCKED** because Windows denied access to the linter SDK cache under `C:\Users\DELL\.cache\genvm-linter`.
 - Frontend typecheck/build: **NOT RUN TO COMPLETION** — frontend dependencies are not installed (`tsc` is unavailable); no package installation was performed because network/package-index access is not available in this environment.
-- Git publication: **NOT AVAILABLE** — this supplied directory has no `.git` metadata.
+- Local Git metadata: **UNAVAILABLE** in the supplied directory; the documentation update was published to the connected GitHub repository integration.
 
 ## Verified repository state
 
