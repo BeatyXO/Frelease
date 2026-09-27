@@ -13,20 +13,24 @@
 - [x] Retired-policy block
 - [x] Artifact replay block
 - [x] Full create/read/assess/history frontend flows
-- [x] Injected-wallet reload persistence + copy + disconnect UI
+- [x] Injected-wallet reload persistence + copy + disconnect UI implemented
 - [x] CI definition
 - [x] 16 deterministic tests green in GitHub CI
 - [x] GenVM lint + validation green for both contracts
 - [x] Direct Mode green — 10 passed
 - [x] Frontend install/typecheck/production build green
 - [x] Local Studionet frontend route smoke and 394 px overflow checks
-- [ ] Interactive wallet reload/copy/disconnect/wrong-network smoke (browser has no injected wallet provider)
 - [x] Release architecture guard green
 - [x] Historical CI evidence documented with source commit and run ID
-- [x] Current workspace validation limitations recorded
-- [x] Canonical Studionet deployment and one-time evaluator configuration (Studionet 61999)
+- [x] Canonical Studionet deployment and one-time evaluator configuration
 - [x] Deployment/configuration finality receipts recorded in `deployments/studionet.json`
-- [ ] On-chain schema hashes (both deployed source bodies match local source after line-ending normalization; schema hashes not recorded)
-- [x] Finalized parent assessment + finalized registry child; checkpoint readback `ACTIVATED`
-- [ ] Live stale-sequence and artifact-replay blocks (one replay attempt was `INCONCLUSIVE`, not proof)
-- [ ] Production frontend deployment + canonical-address smoke test
+- [x] Both deployed source bodies match local contract source after line-ending normalization
+- [x] Finalized parent assessment + finalized Registry child
+- [x] Canonical checkpoint readback `ACTIVATED`
+- [x] Canonical policy head readback sequence 1
+- [x] Latest Vercel check successful after root dependency/output-directory fixes
+- [ ] Optional: live `ARTIFACT_ALREADY_ACTIVATED` proof (Direct Mode coverage is green; one live replay attempt was `INCONCLUSIVE`)
+- [ ] Optional: live `STALE_OR_NON_MONOTONIC_SEQUENCE` proof (Direct Mode coverage is green)
+- [ ] Optional: interactive injected-wallet smoke on deployed frontend
+- [ ] Optional: record public production frontend URL when surfaced by Vercel project
+- [ ] Optional: on-chain schema hash if tooling exposes one
