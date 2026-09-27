@@ -169,8 +169,8 @@
       "sha256": "d96205bfac28bf8c768e614e57e52142ff4eb0182d7c10544e220a809fd3b568"
     },
     "web/next-env.d.ts": {
-      "bytes": 288,
-      "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b"
+      "bytes": 81,
+      "sha256": "879741880b6ab48da99dcc06dcc674d381c9826137b0496bf7bb368f302de9fc"
     },
     "web/next.config.ts": {
       "bytes": 125,
@@ -209,8 +209,8 @@
       "sha256": "8659cda1c7e9e475489f20ce55e20a41d3827b70af8fbf3d65af91f71454373e"
     },
     "web/tsconfig.json": {
-      "bytes": 700,
-      "sha256": "6d5d2c00de2d7f7548eeb79aaf0714fabecb6d8bf80df8791bd9d806640a9d5c"
+      "bytes": 646,
+      "sha256": "cfd2b899647585ed6337e816e684fbabf9b661dcaeba0e1d6413a3efb5ec2712"
     }
   }
 }
