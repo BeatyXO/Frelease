@@ -25,6 +25,10 @@ cd web && npm install && npm run typecheck && npm run build
 
 `deploy/deployScript.ts` performs the deployment/configuration sequence and writes `deployments/studionet.json`.
 
+Run it only from an authenticated GenLayer deployment environment after confirming the connected wallet, chain ID 61999, and sufficient Studionet funds. The script waits for each deployment/configuration transaction to become `FINALIZED`; preserve its output and verify the generated manifest against canonical explorer/state reads before treating deployment as complete. The checked-in `deployments/studionet.example.json` contains empty illustrative fields and is not a deployment receipt. Never copy those empty fields into a file presented as a completed deployment.
+
+After deployment, independently verify `registry.get_config()` returns the evaluator address. Compare both deployed contract sources to the local source hashes recorded by the script (and verify schema parity when available). The script currently records source hashes, addresses and transaction IDs; add schema hashes/method counts only when the deployment tooling exposes verified values.
+
 ## Frontend environment
 
 ```text

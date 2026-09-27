@@ -20,6 +20,8 @@
 - [x] Direct Mode green — 10 passed
 - [x] Frontend install/typecheck/production build green
 - [x] Release architecture guard green
+- [x] Historical CI evidence documented with source commit and run ID
+- [x] Current workspace validation limitations recorded
 - [ ] Canonical Studionet deployment
 - [ ] Deployment/configuration finality receipts
 - [ ] Deployed-source/schema parity evidence

@@ -1,0 +1,204 @@
+{
+  "deployment_status": "NOT YET DEPLOYED — no canonical addresses or live receipts claimed",
+  "files": {
+    "AGENTS.md": {
+      "bytes": 421,
+      "sha256": "2c65e2f843aa1f9a12f5e0fc5b8131ad20523f2934b34b83f5553275098b4171"
+    },
+    "ARCHITECTURE.md": {
+      "bytes": 3765,
+      "sha256": "6fbfea36396531849686ef743cc633e464224e3e91659de6835b1dbab6f8988b"
+    },
+    "CODEX_HANDOFF.md": {
+      "bytes": 8153,
+      "sha256": "7e3de88b4a64aa3f6fde88765d504be51092af8562b18a20697ebf239ad020e0"
+    },
+    "contracts/frelease_evaluator.py": {
+      "bytes": 22610,
+      "sha256": "76c2a6bc4f3654b2a05d34b2011928923458822dc6c40114c51489f63b5a1a6e"
+    },
+    "contracts/frelease_registry.py": {
+      "bytes": 16829,
+      "sha256": "17eb71203c72fcb5cf76d104f6267521ce19a33296d71eeca9c2371a4519ca24"
+    },
+    "deploy/deployScript.ts": {
+      "bytes": 3806,
+      "sha256": "1117cca768d4e1710b356d04a8d724171bf38af15c8a39ff9184e0b2f3934be1"
+    },
+    "DEPLOYMENT_RUNBOOK.md": {
+      "bytes": 2473,
+      "sha256": "6871d85d349105eb554850869832495a21094233acde21280fe67f31be5887d4"
+    },
+    "deployments/studionet.example.json": {
+      "bytes": 263,
+      "sha256": "39cd1e1a28d7d7d53f05f2f37262b493de3d46ce451d0a2eb7806f044ba4016a"
+    },
+    "DIFFERENTIATION.md": {
+      "bytes": 1050,
+      "sha256": "a555c8277dcc996067338790d956fc5fd79d5a9b0122ee4cfcfc98f66aefdbd1"
+    },
+    "gltest.config.yaml": {
+      "bytes": 145,
+      "sha256": "630fcd7dba2a671b725d63a407bb73a476f3a88bebf0ea5c7d4e869691e9dba7"
+    },
+    "package.json": {
+      "bytes": 411,
+      "sha256": "9d3e522c872aebec08dce462fa0ff1ffda4fbc85cc89c80f6d3badc24e58156c"
+    },
+    "pyproject.toml": {
+      "bytes": 77,
+      "sha256": "5cd639965b1cb231e025683e3be6acb36e656ff414cdbc6efd59b1e619871b04"
+    },
+    "README.md": {
+      "bytes": 4295,
+      "sha256": "60829d42d6757263a88c0fe22d0d4f88804fd585f032a88c494cc61506a5371f"
+    },
+    "requirements.txt": {
+      "bytes": 230,
+      "sha256": "7575421c21141eee699cfd8aa83a590d7e674f3ad57ff4abd5ecd4c38fd1bff8"
+    },
+    "REVIEW_TARGET.md": {
+      "bytes": 1326,
+      "sha256": "715a65561ca98bad46992a1a6075f1c24f75ad688abf021cb7bdc1189a8b7d62"
+    },
+    "scripts/release_check.py": {
+      "bytes": 1509,
+      "sha256": "1543287c68cf9bfe74d7a007ac325b6397aa958882084236276da9ef6f8160e7"
+    },
+    "SUBMISSION_CHECKLIST.md": {
+      "bytes": 1304,
+      "sha256": "6a7d0d966a4c4b3231b8f49111f386f6f881078ad569377bd91b43a004ae16c1"
+    },
+    "tests/conftest.py": {
+      "bytes": 560,
+      "sha256": "966525946701cf25d2ef58cddf031b95aeb522708dd3b83baa9cb149024e5edc"
+    },
+    "tests/direct/test_frelease_evaluator.py": {
+      "bytes": 1648,
+      "sha256": "356863aa51c993bf4c188c0eef08b897e315184f2176fa3cfbab1af5b7a5e295"
+    },
+    "tests/direct/test_frelease_registry.py": {
+      "bytes": 4883,
+      "sha256": "f56c49f2a694c81282fbd4d87c6f718637a518fb65f938e94b69c401148d43db"
+    },
+    "tests/unit/test_policy_rules.py": {
+      "bytes": 3765,
+      "sha256": "31f15d7ae78ceabc8c0229a13612612d51da87847a05bddacd9046540d7395d5"
+    },
+    "tests/unit/test_source_invariants.py": {
+      "bytes": 1806,
+      "sha256": "efeb356f2e9f02a64b3472f4e10a24a5a281d8aaaf54369950a3e8a87f5e5e33"
+    },
+    "THREAT_MODEL.md": {
+      "bytes": 1790,
+      "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
+    },
+    "VALIDATION_REPORT.md": {
+      "bytes": 3695,
+      "sha256": "bfe2b922ef361dbf5470328d313c95f39abeaf063784e6de941b15dd28a8e74c"
+    },
+    "web/app/candidate/[candidateKey]/page.tsx": {
+      "bytes": 4853,
+      "sha256": "b02b926c1daa86740cd2f96feddc8680a3bc2cafc44caed3e2f136ac4cee3e09"
+    },
+    "web/app/candidate/new/page.tsx": {
+      "bytes": 2924,
+      "sha256": "04508c8f2774f58321b7e3c8c3fac15c13bd1087f66f054c0f41cecc0fee25dc"
+    },
+    "web/app/globals.css": {
+      "bytes": 11013,
+      "sha256": "39561cfa6d81c082110e52dea106b0f4e6fca5f26d2317a0dcdcb843f5df1129"
+    },
+    "web/app/history/[policyKey]/page.tsx": {
+      "bytes": 1772,
+      "sha256": "bc1698a6af5b89df3230d0cda5bd36ce6a43843cd994c23145ef80b226bcb4b0"
+    },
+    "web/app/layout.tsx": {
+      "bytes": 504,
+      "sha256": "3adbe558d65472ff821b118a8513ba08c7172202449658087a2f7d5ba8e56773"
+    },
+    "web/app/page.tsx": {
+      "bytes": 2868,
+      "sha256": "b29c689614d8477e1af09471acdede303b81ab4d0aa91fc8ab51c97872ddbb45"
+    },
+    "web/app/policy/[policyKey]/page.tsx": {
+      "bytes": 3075,
+      "sha256": "69b7d7e1c44dd6214d503e0472f777b9c2886a0d03658ad007d8c5f367b3e0d1"
+    },
+    "web/app/policy/new/page.tsx": {
+      "bytes": 3088,
+      "sha256": "26158d45f95c2128f7936abecbc5bae53c43ac43ac43191e7e8402097527348e"
+    },
+    "web/app/releases/page.tsx": {
+      "bytes": 1922,
+      "sha256": "57f2887b1115bcc4e666febae22f8b2cf2d8a75c7767d67344be01698021a9e0"
+    },
+    "web/components/Shell.tsx": {
+      "bytes": 1241,
+      "sha256": "38f7825bf38b9f9b25e7c1ddc0cdce9f174f62b44977cfcea86eb1197a1b8fdf"
+    },
+    "web/components/Wallet.tsx": {
+      "bytes": 5247,
+      "sha256": "1298540f49cd4b02a7c25dda961fdc69f802fca9a5bd664ad4819dd3f5ffdb3b"
+    },
+    "web/lib/genlayer.ts": {
+      "bytes": 1022,
+      "sha256": "f8cf9e660e36a7f2f2104abde282004ce4216fa790060947cf8c03a5e3e79390"
+    },
+    "web/lib/write-pipeline.ts": {
+      "bytes": 4461,
+      "sha256": "d96205bfac28bf8c768e614e57e52142ff4eb0182d7c10544e220a809fd3b568"
+    },
+    "web/next-env.d.ts": {
+      "bytes": 81,
+      "sha256": "879741880b6ab48da99dcc06dcc674d381c9826137b0496bf7bb368f302de9fc"
+    },
+    "web/next.config.ts": {
+      "bytes": 125,
+      "sha256": "c6fec4f61ecfd5790f04386c4cb408679d5797900eeb956456ee527b164fe6e8"
+    },
+    "web/package.json": {
+      "bytes": 439,
+      "sha256": "183fab57ce563ab6caaf74aa56387b2d62abadecd767180fe0f30afb74ba10ef"
+    },
+    "web/public/demo-evidence/api-surface.md": {
+      "bytes": 263,
+      "sha256": "afc883d183f163fde8803f9a2d65ed0de4334e3ef560a717acd8a4bf330d9132"
+    },
+    "web/public/demo-evidence/build-manifest.md": {
+      "bytes": 247,
+      "sha256": "4aeff9b1bf66f558550d00b9948b666e795df20c2bb7be4393720b25aefec73c"
+    },
+    "web/public/demo-evidence/changelog.md": {
+      "bytes": 307,
+      "sha256": "db14634fedc1c9c7fdcbc7b7e64fe4d75b06ef93c460ab833fd717d6e2d1327c"
+    },
+    "web/public/demo-evidence/migration-guide.md": {
+      "bytes": 303,
+      "sha256": "d9839e8631e85399df79065666cb741a6295907e96b71490f7a21626da22ce4d"
+    },
+    "web/public/demo-evidence/security-note.md": {
+      "bytes": 246,
+      "sha256": "35dc146a39d85d9102c7302cc8d1082beec04e096bf0c5dd3330b27150d3d705"
+    },
+    "web/public/demo-evidence/test-report.md": {
+      "bytes": 231,
+      "sha256": "8659cda1c7e9e475489f20ce55e20a41d3827b70af8fbf3d65af91f71454373e"
+    },
+    "web/tsconfig.json": {
+      "bytes": 560,
+      "sha256": "c34b7f8143750d6dd07090a82fea495c7b475e10fe78305af4b3b58125bfc350"
+    }
+  },
+  "github_actions_run": 36336956469,
+  "project": "Frelease",
+  "validated_source_commit": "683ff7cbe1f579cb4ec0429e2d09b9817f1648bc",
+  "validation": {
+    "direct_mode": "10 passed",
+    "frontend_build": "PASS",
+    "frontend_typecheck": "PASS",
+    "genvm_lint": "PASS both contracts",
+    "release_check": "RELEASE CHECK OK",
+    "unit_tests": "16 passed"
+  }
+}
