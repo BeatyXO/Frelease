@@ -22,9 +22,9 @@
 - [x] Release architecture guard green
 - [x] Historical CI evidence documented with source commit and run ID
 - [x] Current workspace validation limitations recorded
-- [ ] Canonical Studionet deployment
-- [ ] Deployment/configuration finality receipts
-- [ ] Deployed-source/schema parity evidence
-- [ ] Finalized parent assessment + finalized registry child lifecycle
-- [ ] Stale-sequence + artifact-replay live negative lifecycle
+- [x] Canonical Studionet deployment and one-time evaluator configuration (Studionet 61999)
+- [x] Deployment/configuration finality receipts recorded in `deployments/studionet.json`
+- [ ] Deployed-source parity for both contracts and on-chain schema hashes (Registry source parity confirmed; Evaluator parity/schema hashes not recorded)
+- [x] Finalized parent assessment + finalized registry child; checkpoint readback `ACTIVATED`
+- [ ] Live stale-sequence and artifact-replay blocks (one replay attempt was `INCONCLUSIVE`, not proof)
 - [ ] Production frontend deployment + canonical-address smoke test

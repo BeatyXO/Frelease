@@ -1,0 +1,83 @@
+{
+  "network": "GenLayer Studionet",
+  "chain_id": 61999,
+  "rpc_url": "https://studio.genlayer.com/api",
+  "deployment_status": "DEPLOYED_AND_CONFIGURED",
+  "deployer": "0x7876e9f76f32925c212528d57bc9dfe5e34bcc07",
+  "contracts": {
+    "FreleaseRegistry": {
+      "address": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
+      "deployment_transaction": "0xe5cea33aaaee18afea079fd39b272551cf638f14236360c73253527f9d9fd927",
+      "deployment_status": "FINALIZED",
+      "schema_methods": { "total": 11, "view": 7, "write": 4 },
+      "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
+    },
+    "FreleaseEvaluator": {
+      "address": "0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704",
+      "deployment_transaction": "0x803d1bd66bab520f12560b4b6f2b1069e95c56547df392694414a5f591a94349",
+      "deployment_status": "FINALIZED",
+      "constructor_registry": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
+      "schema_methods": { "total": 7, "view": 5, "write": 2 },
+      "deployed_source_parity": "NOT_RECORDED_IN_THIS_MANIFEST"
+    }
+  },
+  "configuration": {
+    "transaction": "0xaf51e8c7726bd18899d1ccebaed66a148df6abe62a1ea0c1ee05dc5da63fb4a6",
+    "status": "FINALIZED",
+    "registry_get_config_evaluator": "0x8da441a76adeae929c9dd9febb77f0467da7e704",
+    "registry_get_config_owner": "0x7876e9f76f32925c212528d57bc9dfe5e34bcc07"
+  },
+  "positive_lifecycle": {
+    "policy_key": "frelease-main-compat-2026",
+    "policy_digest": "3d5ac65ffccaddbcf82574fb3b0e016d9b96011f8148f53bdcf2fb253425b17e",
+    "policy_registration_transaction": "0xc6fdd39443774d75a14f6e49b14cdbae3a920af4663484508210864d9bbf604a",
+    "candidate_key": "frelease-docs-52fd697",
+    "sequence": 1,
+    "source_commit": "52fd697e0528fee1545d2cd07c67967a40234a7d",
+    "artifact_sha256": "21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33",
+    "artifact_size_bytes": 72301,
+    "candidate_registration_transaction": "0x8e95b1a4c9f6f7896e66d62a7c245a191ef673b0dc3aacf12b3b225a0c105475",
+    "assessment_parent_transaction": "0x62775e30a363e16f214365d01a4f09383bf297c0d65a6f8f342563c0209ffc3a",
+    "assessment_parent_status": "FINALIZED",
+    "assessment_child_transaction": "0x82084fddb9aa1bd680b5558a86b68c52bbb5a4fb9dee644698ad82c13904decb",
+    "assessment_child_status": "FINALIZED",
+    "verdict": "COMPATIBLE",
+    "checkpoint": "ACTIVATED",
+    "checkpoint_reason": "FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT",
+    "evidence_snapshot_digest": "6da3fb89d3dbd4081fe6e681f60f8ac3046d546bd5321bb727428869257b68ef",
+    "assessment_digest": "6aead9e4baad911c4c72f5e59a108eac79da8c1506cd05220923d7c1e90adc29",
+    "evidence_receipts": [
+      { "kind": "CHANGELOG", "sha256": "ea71333641875b056108971cf00f9fc4464e65957b4aa6f249b78482b55c0555" },
+      { "kind": "API_SURFACE", "sha256": "f8aa163ab3c5265facf49f9fde717025b717bec6dcdd667c9ab4a73c9b468f8b" },
+      { "kind": "TEST_REPORT", "sha256": "7ca685875df36ee86308ada6d950b9f7000e0d34a9731468782aba28dc88c7b9" },
+      { "kind": "BUILD_MANIFEST", "sha256": "b954aca246e346ccdb03e58b36db7b8368ecd0e45fe1e72aaf838f5e3d9e0ae2" }
+    ],
+    "policy_head_sequence": 1,
+    "policy_head_candidate": "frelease-docs-52fd697"
+  },
+  "artifact": {
+    "source_archive": ".release-artifacts/Frelease-52fd697-source.zip",
+    "sha256": "21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33",
+    "size_bytes": 72301
+  },
+  "negative_paths": {
+    "artifact_replay_attempt": {
+      "candidate_key": "frelease-replay-52fd697",
+      "registration_sequence": 2,
+      "assessment_parent_transaction": "0x72e9082992da4eaa7abf7eb8b7723a1588e57fb2f9f9552a9ba27d6f7f79995b",
+      "assessment_parent_status": "FINALIZED",
+      "assessment_child_transaction": "0xa3b04e8c24bff781c6c67912b01b278722a23bcd698e9450ec98cb1e8def181d",
+      "assessment_child_status": "FINALIZED",
+      "verdict": "INCONCLUSIVE",
+      "negative_checkpoint_reason": "NOT_YET_READ_BACK",
+      "result": "DOES_NOT_PROVE_ARTIFACT_REPLAY_BLOCKING"
+    },
+    "stale_sequence": "NOT_EXECUTED"
+  },
+  "frontend_production": {
+    "status": "NOT_DEPLOYED",
+    "url": null,
+    "addresses_configured_in_production": false
+  },
+  "verification_note": "This record captures completed deployment and lifecycle receipts from the live run. Registry config and the positive checkpoint/head were read back after finality. No schema hash or evaluator deployed-source parity is asserted."
+}

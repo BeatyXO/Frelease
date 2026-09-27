@@ -1,6 +1,21 @@
 {
-  "deployment_status": "NOT YET DEPLOYED — no canonical addresses or live receipts claimed",
+  "format": "frelease-source-manifest-v1",
+  "last_verified_base_commit": "52fd697e0528fee1545d2cd07c67967a40234a7d",
+  "deployment_status": "Studionet deployed; see deployments/studionet.json",
+  "excluded": [
+    "generated dependencies/build output",
+    "local environment files",
+    "local evidence archive"
+  ],
   "files": {
+    ".github/workflows/ci.yml": {
+      "bytes": 1276,
+      "sha256": "79dc07635122852beb0bed7e5be8501fa74fc55c4bc3f9e42230c85312dc037b"
+    },
+    ".gitignore": {
+      "bytes": 79,
+      "sha256": "e3565f0a87d8dfc729354e42e9fe0915a4337cb1497d297a1acbdc5d56f29961"
+    },
     "AGENTS.md": {
       "bytes": 421,
       "sha256": "2c65e2f843aa1f9a12f5e0fc5b8131ad20523f2934b34b83f5553275098b4171"
@@ -26,12 +41,16 @@
       "sha256": "1117cca768d4e1710b356d04a8d724171bf38af15c8a39ff9184e0b2f3934be1"
     },
     "DEPLOYMENT_RUNBOOK.md": {
-      "bytes": 2473,
-      "sha256": "6871d85d349105eb554850869832495a21094233acde21280fe67f31be5887d4"
+      "bytes": 2466,
+      "sha256": "613d8816571bdef40c420f3c1a43622a795deaf200db4801582be4886f22b6ee"
     },
     "deployments/studionet.example.json": {
       "bytes": 263,
       "sha256": "39cd1e1a28d7d7d53f05f2f37262b493de3d46ce451d0a2eb7806f044ba4016a"
+    },
+    "deployments/studionet.json": {
+      "bytes": 4422,
+      "sha256": "b0d80dc4420df64ace31051debdd1ae70722ccc6dcef04324547397a677a58c1"
     },
     "DIFFERENTIATION.md": {
       "bytes": 1050,
@@ -50,24 +69,24 @@
       "sha256": "5cd639965b1cb231e025683e3be6acb36e656ff414cdbc6efd59b1e619871b04"
     },
     "README.md": {
-      "bytes": 4295,
-      "sha256": "60829d42d6757263a88c0fe22d0d4f88804fd585f032a88c494cc61506a5371f"
+      "bytes": 4799,
+      "sha256": "33d140b261f74cd3bdbcbd8a50f9aa4127d59b5e27eee269c1967bd889c3aac5"
     },
     "requirements.txt": {
       "bytes": 230,
       "sha256": "7575421c21141eee699cfd8aa83a590d7e674f3ad57ff4abd5ecd4c38fd1bff8"
     },
     "REVIEW_TARGET.md": {
-      "bytes": 1326,
-      "sha256": "715a65561ca98bad46992a1a6075f1c24f75ad688abf021cb7bdc1189a8b7d62"
+      "bytes": 1069,
+      "sha256": "faeb408ffd8026024dc7926ce9fb5ea1e87ebd2ab6a334dd8d3342d681b165b0"
     },
     "scripts/release_check.py": {
       "bytes": 1509,
       "sha256": "1543287c68cf9bfe74d7a007ac325b6397aa958882084236276da9ef6f8160e7"
     },
     "SUBMISSION_CHECKLIST.md": {
-      "bytes": 1304,
-      "sha256": "6a7d0d966a4c4b3231b8f49111f386f6f881078ad569377bd91b43a004ae16c1"
+      "bytes": 1574,
+      "sha256": "ab2d035fb231809c64cfce1d9fee5f89334f4601468dfb29fd6e2df150f5630d"
     },
     "tests/conftest.py": {
       "bytes": 560,
@@ -94,11 +113,11 @@
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
     },
     "VALIDATION_REPORT.md": {
-      "bytes": 3758,
-      "sha256": "561fbd069984b1eadcf7291d0f02ef57f292b8da5ba18a8109ae095f6c43e6fb"
+      "bytes": 5285,
+      "sha256": "9971aea026bde9d2390c63d6547ee4da2a6a7dc42985d096465e18acd7128204"
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
-      "bytes": 0,
+      "bytes": 4853,
       "sha256": "b02b926c1daa86740cd2f96feddc8680a3bc2cafc44caed3e2f136ac4cee3e09"
     },
     "web/app/candidate/new/page.tsx": {
@@ -110,7 +129,7 @@
       "sha256": "39561cfa6d81c082110e52dea106b0f4e6fca5f26d2317a0dcdcb843f5df1129"
     },
     "web/app/history/[policyKey]/page.tsx": {
-      "bytes": 0,
+      "bytes": 1772,
       "sha256": "bc1698a6af5b89df3230d0cda5bd36ce6a43843cd994c23145ef80b226bcb4b0"
     },
     "web/app/layout.tsx": {
@@ -122,7 +141,7 @@
       "sha256": "b29c689614d8477e1af09471acdede303b81ab4d0aa91fc8ab51c97872ddbb45"
     },
     "web/app/policy/[policyKey]/page.tsx": {
-      "bytes": 0,
+      "bytes": 3075,
       "sha256": "69b7d7e1c44dd6214d503e0472f777b9c2886a0d03658ad007d8c5f367b3e0d1"
     },
     "web/app/policy/new/page.tsx": {
@@ -150,12 +169,16 @@
       "sha256": "d96205bfac28bf8c768e614e57e52142ff4eb0182d7c10544e220a809fd3b568"
     },
     "web/next-env.d.ts": {
-      "bytes": 81,
-      "sha256": "879741880b6ab48da99dcc06dcc674d381c9826137b0496bf7bb368f302de9fc"
+      "bytes": 288,
+      "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b"
     },
     "web/next.config.ts": {
       "bytes": 125,
       "sha256": "c6fec4f61ecfd5790f04386c4cb408679d5797900eeb956456ee527b164fe6e8"
+    },
+    "web/package-lock.json": {
+      "bytes": 145609,
+      "sha256": "4eaa76e74ae9310c4cb7f2d97405b9efbfffc51df3cc576984be84b41d43214b"
     },
     "web/package.json": {
       "bytes": 439,
@@ -186,19 +209,8 @@
       "sha256": "8659cda1c7e9e475489f20ce55e20a41d3827b70af8fbf3d65af91f71454373e"
     },
     "web/tsconfig.json": {
-      "bytes": 560,
-      "sha256": "c34b7f8143750d6dd07090a82fea495c7b475e10fe78305af4b3b58125bfc350"
+      "bytes": 700,
+      "sha256": "6d5d2c00de2d7f7548eeb79aaf0714fabecb6d8bf80df8791bd9d806640a9d5c"
     }
-  },
-  "github_actions_run": 36336956469,
-  "project": "Frelease",
-  "validated_source_commit": "683ff7cbe1f579cb4ec0429e2d09b9817f1648bc",
-  "validation": {
-    "direct_mode": "10 passed",
-    "frontend_build": "PASS",
-    "frontend_typecheck": "PASS",
-    "genvm_lint": "PASS both contracts",
-    "release_check": "RELEASE CHECK OK",
-    "unit_tests": "16 passed"
   }
 }

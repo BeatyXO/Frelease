@@ -1,17 +1,26 @@
-# Frelease validation report
+# Frelease validation and deployment report
 
-## Validation provenance
+## Repository and CI
 
-The green results below are GitHub Actions results for source commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc` (run `36336956469`, 2026-09-27). They are historical CI evidence for that exact source snapshot, not a claim that the current Windows workspace reproduced every check.
+The last verified main-branch CI run is [36339236890](https://github.com/BeatyXO/Frelease/actions/runs/36339236890), successful for commit `52fd697e0528fee1545d2cd07c67967a40234a7d` (2026-09-27). It includes the project's test/build workflow. Earlier detailed test counts were recorded for commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc`, run `36336956469`: 16 deterministic tests, 10 Direct Mode tests, both GenVM lint/schema validations, and frontend install, typecheck and build all passed.
 
-### Current workspace attempt (2026-09-27)
+This Windows workspace has no Git metadata. A fresh `npm install --no-audit --no-fund` completed successfully. `npm run typecheck` and `npm run build` both passed locally, including a production build with `.env.local` set to the verified Studionet addresses and RPC/explorer endpoints. The environment file is git-ignored.
 
-- Python contract syntax compilation: **PASS**.
-- `python scripts/release_check.py`: **PASS** — `RELEASE CHECK OK`.
-- `pytest -q tests/unit` and `pytest -q tests/direct`: **NOT RUN TO COMPLETION** — the installed pytest launcher cannot import `_pytest.config` (`pytest` package is missing/corrupt in this Python environment).
-- GenVM lint: **PASS** for both contracts when `PYTHONIOENCODING=utf-8`; SDK validation is **BLOCKED** because Windows denied access to the linter SDK cache under `C:\Users\DELL\.cache\genvm-linter`.
-- Frontend typecheck/build: **NOT RUN TO COMPLETION** — frontend dependencies are not installed (`tsc` is unavailable); no package installation was performed because network/package-index access is not available in this environment.
-- Local Git metadata: **UNAVAILABLE** in the supplied directory; the documentation update was published to the connected GitHub repository integration.
+## Live Studionet deployment
+
+`deployments/studionet.json` records the verified chain-61999 deployment. Registry and Evaluator deployment transactions, plus the one-time evaluator-binding transaction, reached `FINALIZED`. `get_config()` returned the deployed evaluator address and deployer owner. Registry deployed-source bytes matched local source after line-ending normalization. The exposed schema counts match the CI-validated APIs: Registry 11 methods (7 view, 4 write), Evaluator 7 methods (5 view, 2 write). No schema hash is asserted, and Evaluator deployed-source parity is not confirmed in the record.
+
+## Live lifecycle
+
+The positive candidate `frelease-docs-52fd697` binds source commit `52fd697e0528fee1545d2cd07c67967a40234a7d` and archive SHA-256 `21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33`. Its assessment parent and finalized-only Registry child both reached `FINALIZED`. The readback was verdict `COMPATIBLE`, checkpoint `ACTIVATED`, reason `FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT`, head sequence 1. Evidence receipts and snapshot/assessment digests are in the deployment JSON.
+
+One duplicate-artifact attempt did not supply the recommended replay proof: evaluator verdict `INCONCLUSIVE`. Its finalized transactions are retained in the manifest, but no `ARTIFACT_ALREADY_ACTIVATED` checkpoint is claimed. A live stale-sequence proof has not been run.
+
+## Current environment limits
+
+- The selected deployer account remains configured in GenLayer CLI, but its private key is no longer unlocked in the OS keychain. No further wallet-signed transactions were attempted.
+- Direct RPC reads from this process currently fail with network access denied/timeout. Previously captured canonical readbacks and finalized receipts are recorded above.
+- No Vercel project binding or production URL is configured in this repository. A production site deployment and route/wallet smoke tests are not claimed.
 
 ## Verified repository state
 

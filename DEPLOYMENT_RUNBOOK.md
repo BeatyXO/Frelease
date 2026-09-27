@@ -25,9 +25,9 @@ cd web && npm install && npm run typecheck && npm run build
 
 `deploy/deployScript.ts` performs the deployment/configuration sequence and writes `deployments/studionet.json`.
 
-Run it only from an authenticated GenLayer deployment environment after confirming the connected wallet, chain ID 61999, and sufficient Studionet funds. The script waits for each deployment/configuration transaction to become `FINALIZED`; preserve its output and verify the generated manifest against canonical explorer/state reads before treating deployment as complete. The checked-in `deployments/studionet.example.json` contains empty illustrative fields and is not a deployment receipt. Never copy those empty fields into a file presented as a completed deployment.
+The current deployment is recorded in `deployments/studionet.json`. Registry, Evaluator and evaluator-binding transactions all reached `FINALIZED`. The registry `get_config()` readback matched the evaluator and owner addresses. Registry source parity was confirmed after normalizing line endings; evaluator parity and schema hashes were not recorded. The example file remains illustrative only.
 
-After deployment, independently verify `registry.get_config()` returns the evaluator address. Compare both deployed contract sources to the local source hashes recorded by the script (and verify schema parity when available). The script currently records source hashes, addresses and transaction IDs; add schema hashes/method counts only when the deployment tooling exposes verified values.
+After deployment, independently verify `registry.get_config()` returns the evaluator address. Compare both deployed contract sources to local source hashes and record schema hashes only when verified. This deployment record confirms Registry source parity, and explicitly leaves Evaluator parity unverified.
 
 ## Frontend environment
 
@@ -40,4 +40,4 @@ NEXT_PUBLIC_GENLAYER_EXPLORER=https://explorer-studio.genlayer.com
 
 ## Live lifecycle
 
-Use at least two real public evidence origins. Record policy registration, candidate registration, assessment parent tx, finalized registry child tx, evidence snapshot digest, assessment digest, checkpoint readback and policy-head readback. Then exercise a stale sequence or artifact replay negative path.
+The positive lifecycle is recorded in `deployments/studionet.json`, with a `COMPATIBLE` verdict and `ACTIVATED` checkpoint following finalized parent and child transactions. A separate duplicate-artifact candidate was assessed as `INCONCLUSIVE`; because semantic assessment did not yield an activatable verdict, that attempt does not prove the Registry's `ARTIFACT_ALREADY_ACTIVATED` path. Run a compatible duplicate under the same policy and verify its checkpoint, then run a newer sequence followed by a compatible older sequence to verify stale blocking.

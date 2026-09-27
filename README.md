@@ -73,8 +73,8 @@ npm run build
 npm run dev
 ```
 
-## Deployment
+## Verified Studionet deployment
 
-The repository contains no private key and no invented canonical address. `deploy/deployScript.ts` targets Studionet 61999, deploys the registry first, deploys the evaluator with the registry address, finalizes the one-time registry → evaluator binding and writes `deployments/studionet.json`.
+The two contracts are deployed and configured on Studionet 61999. The Registry is `0x9658E192cdA77De11b7Fa173e7cd998791DB8578`; the Evaluator is `0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704`. Both deployment transactions and the one-time evaluator configuration transaction reached `FINALIZED`. The positive candidate `frelease-docs-52fd697` also reached an `ACTIVATED` registry checkpoint after its finalized assessment parent and finalized registry child.
 
-See `DEPLOYMENT_RUNBOOK.md`, `REVIEW_TARGET.md`, `VALIDATION_REPORT.md` and `CODEX_HANDOFF.md`.
+The machine-readable transaction and lifecycle record is [deployments/studionet.json](deployments/studionet.json). A second attempted assessment returned `INCONCLUSIVE`; it is not represented as proof of replay protection. The stale-sequence live path and production frontend deployment remain unverified. Use `DEPLOYMENT_RUNBOOK.md`, `REVIEW_TARGET.md` and `VALIDATION_REPORT.md` for the evidence and remaining checks.
