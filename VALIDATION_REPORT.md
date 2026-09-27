@@ -2,9 +2,11 @@
 
 ## Repository and CI
 
-The last verified main-branch CI run is [36339236890](https://github.com/BeatyXO/Frelease/actions/runs/36339236890), successful for commit `52fd697e0528fee1545d2cd07c67967a40234a7d` (2026-09-27). It includes the project's test/build workflow. Earlier detailed test counts were recorded for commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc`, run `36336956469`: 16 deterministic tests, 10 Direct Mode tests, both GenVM lint/schema validations, and frontend install, typecheck and build all passed.
+The most recent completed CI run before this report-only update is [36342835472](https://github.com/BeatyXO/Frelease/actions/runs/36342835472), successful for commit `5bd9f996a20bfd446fe8c150ebb490cff237e415` (2026-09-27). It includes the project's test/build workflow. Earlier detailed test counts were recorded for commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc`, run `36336956469`: 16 deterministic tests, 10 Direct Mode tests, both GenVM lint/schema validations, and frontend install, typecheck and build all passed.
 
 This Windows workspace has no Git metadata. A fresh `npm install --no-audit --no-fund` completed successfully. `npm run typecheck` and `npm run build` both passed locally, including a production build with `.env.local` set to the verified Studionet addresses and RPC/explorer endpoints. The environment file is git-ignored.
+
+The built app was opened locally against Studionet and smoke-checked on `/`, `/releases`, `/policy/new`, the live policy detail, `/candidate/new`, the activated candidate detail and `/history/frelease-main-compat-2026`. The history displayed the finalized `ACTIVATED` sequence 1 record and the separate `BLOCKED / INCONCLUSIVE` sequence 2 record. At the browser's 394 px viewport, all checked routes rendered without horizontal overflow. This in-app browser has no injected `window.ethereum` provider, so wallet popover, reload reconnection, copy, disconnect and wrong-network switch could not be exercised interactively.
 
 ## Live Studionet deployment
 
@@ -20,7 +22,7 @@ One duplicate-artifact attempt did not supply the recommended replay proof: eval
 
 - The selected deployer account remains configured in GenLayer CLI, but its private key is no longer unlocked in the OS keychain. No further wallet-signed transactions were attempted.
 - Direct RPC reads required network-enabled execution. The canonical deployment, positive checkpoint/head, replay checkpoint and both deployed source bodies were retrieved and recorded.
-- No Vercel project binding or production URL is configured in this repository. A production site deployment and route/wallet smoke tests are not claimed.
+- No Vercel project binding or production URL is configured in this repository. A production site deployment and interactive wallet smoke tests are not claimed.
 
 ## Verified repository state
 

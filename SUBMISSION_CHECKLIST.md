@@ -19,12 +19,14 @@
 - [x] GenVM lint + validation green for both contracts
 - [x] Direct Mode green — 10 passed
 - [x] Frontend install/typecheck/production build green
+- [x] Local Studionet frontend route smoke and 394 px overflow checks
+- [ ] Interactive wallet reload/copy/disconnect/wrong-network smoke (browser has no injected wallet provider)
 - [x] Release architecture guard green
 - [x] Historical CI evidence documented with source commit and run ID
 - [x] Current workspace validation limitations recorded
 - [x] Canonical Studionet deployment and one-time evaluator configuration (Studionet 61999)
 - [x] Deployment/configuration finality receipts recorded in `deployments/studionet.json`
-- [ ] Deployed-source parity for both contracts and on-chain schema hashes (Registry source parity confirmed; Evaluator parity/schema hashes not recorded)
+- [ ] On-chain schema hashes (both deployed source bodies match local source after line-ending normalization; schema hashes not recorded)
 - [x] Finalized parent assessment + finalized registry child; checkpoint readback `ACTIVATED`
 - [ ] Live stale-sequence and artifact-replay blocks (one replay attempt was `INCONCLUSIVE`, not proof)
 - [ ] Production frontend deployment + canonical-address smoke test

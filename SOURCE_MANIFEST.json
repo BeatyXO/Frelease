@@ -85,8 +85,8 @@
       "sha256": "1543287c68cf9bfe74d7a007ac325b6397aa958882084236276da9ef6f8160e7"
     },
     "SUBMISSION_CHECKLIST.md": {
-      "bytes": 1574,
-      "sha256": "ab2d035fb231809c64cfce1d9fee5f89334f4601468dfb29fd6e2df150f5630d"
+      "bytes": 1737,
+      "sha256": "8d51dfe1cb79f2706a5dd055c31548b19700800ccc440bd89d6703100aac0fc3"
     },
     "tests/conftest.py": {
       "bytes": 560,
@@ -113,8 +113,8 @@
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
     },
     "VALIDATION_REPORT.md": {
-      "bytes": 5287,
-      "sha256": "ccfa0a36c7b6531c34ac9166a69fa263d37f88068c7a589c0ca2cee4e0e92179"
+      "bytes": 5943,
+      "sha256": "464758a2035d2b9ea73b89b424c92898b1dad6a8a0a844e37e6f54568392a121"
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
       "bytes": 4853,
