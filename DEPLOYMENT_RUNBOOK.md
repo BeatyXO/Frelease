@@ -15,31 +15,54 @@ pytest -q tests/direct
 cd web && npm install && npm run typecheck && npm run build
 ```
 
-## Deployment order
+## Canonical deployment
 
-1. Deploy `contracts/frelease_registry.py` with no constructor arguments.
-2. Deploy `contracts/frelease_evaluator.py` with the registry address.
-3. Call `FreleaseRegistry.set_evaluator_once(evaluator)` from the registry deployer and finalize it.
-4. Verify registry config reads the exact evaluator address.
-5. Verify deployed source parity and record source/schema hashes.
+The current deployment is recorded in `deployments/studionet.json`.
 
-`deploy/deployScript.ts` performs the deployment/configuration sequence and writes `deployments/studionet.json`.
+- Registry, Evaluator and evaluator-binding transactions all reached `FINALIZED`.
+- `registry.get_config()` matched the evaluator and owner addresses.
+- Both deployed contract source bodies matched local source after line-ending normalization.
+- Schema method counts are recorded; no schema hash is claimed.
 
-The current deployment is recorded in `deployments/studionet.json`. Registry, Evaluator and evaluator-binding transactions all reached `FINALIZED`. The registry `get_config()` readback matched the evaluator and owner addresses. Both deployed source bodies match local source after normalizing line endings; schema hashes were not recorded. The example file remains illustrative only.
+The original deployment order was:
 
-After deployment, independently verify `registry.get_config()` returns the evaluator address. Both deployed contract sources were fetched over RPC and matched the local source after line-ending normalization. Record schema hashes only when verified.
+1. deploy `contracts/frelease_registry.py`;
+2. deploy `contracts/frelease_evaluator.py` with the Registry address;
+3. call `FreleaseRegistry.set_evaluator_once(evaluator)`;
+4. finalize configuration;
+5. verify Registry configuration and source parity.
+
+`deploy/deployScript.ts` remains the reproducible deployment script for a future redeployment.
 
 ## Frontend environment
 
-The repository-root Vercel configuration builds the Next.js app from `web/` and sets its output directory to `web/.next`.
+The repository-root Vercel configuration builds the Next.js app from `web/` and uses `web/.next` as its output directory.
 
 ```text
-NEXT_PUBLIC_FRELEASE_REGISTRY_ADDRESS=0x...
-NEXT_PUBLIC_FRELEASE_EVALUATOR_ADDRESS=0x...
+NEXT_PUBLIC_FRELEASE_REGISTRY_ADDRESS=0x9658E192cdA77De11b7Fa173e7cd998791DB8578
+NEXT_PUBLIC_FRELEASE_EVALUATOR_ADDRESS=0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704
 NEXT_PUBLIC_GENLAYER_RPC_URL=https://studio.genlayer.com/api
 NEXT_PUBLIC_GENLAYER_EXPLORER=https://explorer-studio.genlayer.com
 ```
 
+GitHub reports the latest Vercel check as successful for commit `d4b65927f0ecc8a289e4dd63023b5920bdb3b229`. A public production URL is not recorded in this repository and is therefore not asserted here.
+
 ## Live lifecycle
 
-The positive lifecycle is recorded in `deployments/studionet.json`, with a `COMPATIBLE` verdict and `ACTIVATED` checkpoint following finalized parent and child transactions. A separate duplicate-artifact candidate was assessed as `INCONCLUSIVE`; because semantic assessment did not yield an activatable verdict, that attempt does not prove the Registry's `ARTIFACT_ALREADY_ACTIVATED` path. Run a compatible duplicate under the same policy and verify its checkpoint, then run a newer sequence followed by a compatible older sequence to verify stale blocking.
+The positive lifecycle is complete and recorded in `deployments/studionet.json`:
+
+- parent assessment: `FINALIZED`;
+- finalized-only Registry child: `FINALIZED`;
+- verdict: `COMPATIBLE`;
+- checkpoint: `ACTIVATED`;
+- policy head: sequence `1`.
+
+## Optional additional evidence
+
+If an unlocked Studionet signer is available later, useful extra demonstrations are:
+
+- a compatible duplicate artifact that reaches `ARTIFACT_ALREADY_ACTIVATED`;
+- an out-of-order compatible candidate that reaches `STALE_OR_NON_MONOTONIC_SEQUENCE`;
+- a retirement-race proof.
+
+These protections already have green Direct Mode coverage and are not represented as missing core functionality.
