@@ -1,11 +1,35 @@
 # Frelease reviewer target
 
-A live deployment and positive lifecycle are recorded in `deployments/studionet.json`. The following remaining proofs are not claimed as complete:
+Frelease has a live Studionet deployment, finalized configuration and a completed positive activation lifecycle recorded in `deployments/studionet.json`.
 
-1. Confirm the live `get_config()` evaluator/owner readback.
-2. Verify deployed-source parity for the Evaluator, and record verified schema hashes if exposed.
-3. Activate a newer sequence, then finalize a compatible older candidate and read back `STALE_OR_NON_MONOTONIC_SEQUENCE` without head rollback.
-4. Assess a duplicate-artifact candidate to a compatible verdict, then read back `ARTIFACT_ALREADY_ACTIVATED`. The recorded replay attempt was `INCONCLUSIVE` and is not sufficient.
-5. Deploy/configure the frontend against the canonical addresses; test the routes, finalized checkpoint, wallet reload persistence, copy/disconnect, wrong-network switch and responsive layout.
+## Already demonstrated
 
-The positive lifecycle already has a finalized parent and child plus `ACTIVATED` checkpoint/head readback. Do not describe `ACCEPTED`, `INCONCLUSIVE`, or another provisional evaluator state as an activated release.
+1. `FreleaseRegistry` and `FreleaseEvaluator` are deployed on Studionet 61999.
+2. Registry → Evaluator configuration reached `FINALIZED`.
+3. `get_config()` readback matched the expected evaluator and owner.
+4. Both deployed contract source bodies match local source after line-ending normalization.
+5. A real policy and candidate were registered.
+6. The assessment parent reached `FINALIZED`.
+7. The finalized-only Registry child reached `FINALIZED`.
+8. Canonical readback returned:
+   - verdict `COMPATIBLE`;
+   - checkpoint `ACTIVATED`;
+   - reason `FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT`;
+   - policy head sequence `1`.
+9. Evidence receipts, evidence snapshot digest and assessment digest were recorded.
+10. CI is green for contract compilation, deterministic tests, GenVM lint/validation, Direct Mode, architecture guard, frontend typecheck and frontend production build.
+11. The latest Vercel check is successful after the repository-root dependency/output-directory fixes.
+
+## Optional strengthening evidence
+
+These are useful but are **not required to establish the deployed positive lifecycle**:
+
+- Run a compatible duplicate-artifact candidate that reaches `ARTIFACT_ALREADY_ACTIVATED`.
+- Run an out-of-order compatible candidate that reaches `STALE_OR_NON_MONOTONIC_SEQUENCE`.
+- Smoke-test the deployed frontend with a real injected wallet for reload restoration, copy address, disconnect and wrong-network switching.
+- Record the public production frontend URL when it is available from the Vercel project.
+- Record an on-chain schema hash if future tooling exposes one.
+
+Direct Mode already covers stale-sequence, artifact-replay and retirement protections.
+
+Do not describe `ACCEPTED`, `INCONCLUSIVE` or another provisional evaluator state as an activated release. Canonical activation comes from the Registry checkpoint/head after finalized child execution.
