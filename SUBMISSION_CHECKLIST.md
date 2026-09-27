@@ -1,0 +1,26 @@
+# Submission checklist
+
+- [x] Two-contract clean architecture
+- [x] Frozen policy digest
+- [x] Exact candidate commit + artifact digest
+- [x] Typed HTTPS evidence policy
+- [x] SSRF-oriented evidence URL validation
+- [x] Independent validator assessment
+- [x] Evidence-window SHA-256 receipts
+- [x] Deterministic semantic coherence law
+- [x] Finalized-only evaluator → registry boundary
+- [x] Monotonic release head
+- [x] Retired-policy block
+- [x] Artifact replay block
+- [x] Full create/read/assess/history frontend flows
+- [x] Injected-wallet reload persistence + copy + disconnect UI
+- [x] CI definition
+- [x] 16 deterministic tests passing locally
+- [ ] GenVM lint green in GenLayer toolchain
+- [ ] Direct Mode green in GenLayer toolchain
+- [ ] Frontend install/typecheck/build green
+- [ ] Canonical Studionet deployment
+- [ ] Source/schema parity evidence
+- [ ] Finalized parent + child live lifecycle
+- [ ] Stale/replay live negative lifecycle
+- [ ] Production frontend deployment + smoke test
