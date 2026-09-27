@@ -3,5 +3,5 @@
   "private":true,
   "type":"module",
   "scripts":{"dev":"cd web && npm run dev","build":"cd web && npm run build","typecheck":"cd web && npm run typecheck","deploy":"genlayer deploy","test:unit":"pytest -q tests/unit","test:direct":"pytest -q tests/direct","guard":"python3 scripts/release_check.py"},
-  "devDependencies":{"genlayer-js":"^1.1.8","next":"^16.0.0","typescript":"^5.9.3"}
+  "devDependencies":{"@types/node":"^24.9.1","@types/react":"^19.2.2","@types/react-dom":"^19.2.2","genlayer-js":"^1.1.8","next":"^16.0.0","typescript":"^5.9.3"}
 }

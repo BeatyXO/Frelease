@@ -24,6 +24,10 @@ One duplicate-artifact attempt did not supply the recommended replay proof: eval
 - Direct RPC reads required network-enabled execution. The canonical deployment, positive checkpoint/head, replay checkpoint and both deployed source bodies were retrieved and recorded.
 - No Vercel project binding or production URL is configured in this repository. A production site deployment and interactive wallet smoke tests are not claimed.
 
+## Vercel build follow-up
+
+The Vercel build log provided after commit `378f1e3b0b0413ccab0feabeef23a1cc635f103d` shows the repository-root install followed by `cd web && npm run build`; Next compiled, then failed because the root install did not provide `@types/react` and `@types/node`. Those packages (plus `@types/react-dom`) are now declared in the root build manifest so the existing root-directory Vercel configuration installs the types needed by the `web` TypeScript build. This environment could not complete a fresh root `npm install`, so Vercel redeployment is still needed to verify the fix in its clean build environment.
+
 ## Verified repository state
 
 GitHub validation was completed against source commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc` in CI run `36336956469` on 2026-09-27, as recorded in the source manifest.

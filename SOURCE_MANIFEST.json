@@ -61,8 +61,8 @@
       "sha256": "630fcd7dba2a671b725d63a407bb73a476f3a88bebf0ea5c7d4e869691e9dba7"
     },
     "package.json": {
-      "bytes": 411,
-      "sha256": "9d3e522c872aebec08dce462fa0ff1ffda4fbc85cc89c80f6d3badc24e58156c"
+      "bytes": 489,
+      "sha256": "2da638d0210837c9a549105e9b1d47be4d6ffe481b2be8520394ee30dc8c41bf"
     },
     "pyproject.toml": {
       "bytes": 77,
@@ -113,8 +113,8 @@
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
     },
     "VALIDATION_REPORT.md": {
-      "bytes": 5943,
-      "sha256": "464758a2035d2b9ea73b89b424c92898b1dad6a8a0a844e37e6f54568392a121"
+      "bytes": 6579,
+      "sha256": "5311bb8e590e1113beb86eb5f958afd8cd03c4905294ab7a4ea49a897a3a0a8c"
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
       "bytes": 4853,
