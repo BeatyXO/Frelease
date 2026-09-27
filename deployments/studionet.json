@@ -9,7 +9,11 @@
       "address": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
       "deployment_transaction": "0xe5cea33aaaee18afea079fd39b272551cf638f14236360c73253527f9d9fd927",
       "deployment_status": "FINALIZED",
-      "schema_methods": { "total": 11, "view": 7, "write": 4 },
+      "schema_methods": {
+        "total": 11,
+        "view": 7,
+        "write": 4
+      },
       "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
     },
     "FreleaseEvaluator": {
@@ -17,7 +21,11 @@
       "deployment_transaction": "0x803d1bd66bab520f12560b4b6f2b1069e95c56547df392694414a5f591a94349",
       "deployment_status": "FINALIZED",
       "constructor_registry": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
-      "schema_methods": { "total": 7, "view": 5, "write": 2 },
+      "schema_methods": {
+        "total": 7,
+        "view": 5,
+        "write": 2
+      },
       "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
     }
   },
@@ -47,10 +55,22 @@
     "evidence_snapshot_digest": "6da3fb89d3dbd4081fe6e681f60f8ac3046d546bd5321bb727428869257b68ef",
     "assessment_digest": "6aead9e4baad911c4c72f5e59a108eac79da8c1506cd05220923d7c1e90adc29",
     "evidence_receipts": [
-      { "kind": "CHANGELOG", "sha256": "ea71333641875b056108971cf00f9fc4464e65957b4aa6f249b78482b55c0555" },
-      { "kind": "API_SURFACE", "sha256": "f8aa163ab3c5265facf49f9fde717025b717bec6dcdd667c9ab4a73c9b468f8b" },
-      { "kind": "TEST_REPORT", "sha256": "7ca685875df36ee86308ada6d950b9f7000e0d34a9731468782aba28dc88c7b9" },
-      { "kind": "BUILD_MANIFEST", "sha256": "b954aca246e346ccdb03e58b36db7b8368ecd0e45fe1e72aaf838f5e3d9e0ae2" }
+      {
+        "kind": "CHANGELOG",
+        "sha256": "ea71333641875b056108971cf00f9fc4464e65957b4aa6f249b78482b55c0555"
+      },
+      {
+        "kind": "API_SURFACE",
+        "sha256": "f8aa163ab3c5265facf49f9fde717025b717bec6dcdd667c9ab4a73c9b468f8b"
+      },
+      {
+        "kind": "TEST_REPORT",
+        "sha256": "7ca685875df36ee86308ada6d950b9f7000e0d34a9731468782aba28dc88c7b9"
+      },
+      {
+        "kind": "BUILD_MANIFEST",
+        "sha256": "b954aca246e346ccdb03e58b36db7b8368ecd0e45fe1e72aaf838f5e3d9e0ae2"
+      }
     ],
     "policy_head_sequence": 1,
     "policy_head_candidate": "frelease-docs-52fd697"
@@ -73,15 +93,24 @@
       "checkpoint_verdict": "INCONCLUSIVE",
       "checkpoint_assessment_digest": "eb124931f45ae22b8dbd9e06047f79f3950b71130d86c49ad7aacc9841161758",
       "checkpoint_recorded_at": "2026-09-27T18:42:55.347328Z",
-      "verdict": "INCONCLUSIVE",
-      "result": "DOES_NOT_PROVE_ARTIFACT_REPLAY_BLOCKING"
+      "result": "LIVE_BLOCKED_CHECKPOINT_CONFIRMED_BUT_NOT_ARTIFACT_REPLAY_PROOF"
     },
-    "stale_sequence": "NOT_EXECUTED"
+    "artifact_replay_specific_live_proof": "NOT_EXECUTED_AFTER_COMPATIBLE_VERDICT",
+    "stale_sequence_live_proof": "NOT_EXECUTED",
+    "direct_mode_coverage": {
+      "artifact_replay": true,
+      "stale_sequence": true,
+      "policy_retirement": true
+    }
   },
   "frontend_production": {
-    "status": "NOT_DEPLOYED",
-    "url": null,
-    "addresses_configured_in_production": false
+    "vercel_check_status": "SUCCESS",
+    "checked_commit": "d4b65927f0ecc8a289e4dd63023b5920bdb3b229",
+    "vercel_status_target": "https://vercel.com/beatycat/frelease/CVmDkBaNu5qcJ9LbhHPfk2zReXKd",
+    "public_production_url": null,
+    "public_url_recorded": false,
+    "canonical_address_configuration_in_public_deployment": "NOT_INDEPENDENTLY_VERIFIED",
+    "interactive_injected_wallet_smoke": false
   },
-  "verification_note": "This record captures completed deployment and lifecycle receipts from the live run. Registry config and the positive and inconclusive-negative checkpoints were read back after finality. Both deployed sources match their local files after line-ending normalization. No schema hash is asserted."
+  "verification_note": "Core Studionet deployment and positive lifecycle are complete. Both deployed sources match local contract source after line-ending normalization. GitHub reports a successful Vercel check for the latest deployment configuration. No public frontend URL, live stale-sequence proof, compatible artifact-replay proof, or on-chain schema hash is invented."
 }
