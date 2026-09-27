@@ -41,8 +41,8 @@
       "sha256": "1117cca768d4e1710b356d04a8d724171bf38af15c8a39ff9184e0b2f3934be1"
     },
     "DEPLOYMENT_RUNBOOK.md": {
-      "bytes": 2397,
-      "sha256": "6bee7333211dd9b6636731828c7f5eeb74e6b82726f8f9ab79648c97a3841881"
+      "bytes": 2520,
+      "sha256": "bd55169b1a869aa60752f801e9ae528ae254421c4fef02ea447bf7a15040e7cd"
     },
     "deployments/studionet.example.json": {
       "bytes": 263,
@@ -113,8 +113,12 @@
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3"
     },
     "VALIDATION_REPORT.md": {
-      "bytes": 6579,
-      "sha256": "5311bb8e590e1113beb86eb5f958afd8cd03c4905294ab7a4ea49a897a3a0a8c"
+      "bytes": 6498,
+      "sha256": "f566afdb59dfe59b1f1f3789e03e540dabf94caf96f13bdb011f9212b9d81f8a"
+    },
+    "vercel.json": {
+      "bytes": 91,
+      "sha256": "ef160acceaa878754cea24e6d86ba5cd07be3a8fc27cb306cb79e118ab07fe93"
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
       "bytes": 4853,

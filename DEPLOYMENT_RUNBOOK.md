@@ -31,6 +31,8 @@ After deployment, independently verify `registry.get_config()` returns the evalu
 
 ## Frontend environment
 
+The repository-root Vercel configuration builds the Next.js app from `web/` and sets its output directory to `web/.next`.
+
 ```text
 NEXT_PUBLIC_FRELEASE_REGISTRY_ADDRESS=0x...
 NEXT_PUBLIC_FRELEASE_EVALUATOR_ADDRESS=0x...
