@@ -75,6 +75,21 @@ npm run dev
 
 ## Verified Studionet deployment
 
-The two contracts are deployed and configured on Studionet 61999. The Registry is `0x9658E192cdA77De11b7Fa173e7cd998791DB8578`; the Evaluator is `0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704`. Both deployment transactions and the one-time evaluator configuration transaction reached `FINALIZED`. The positive candidate `frelease-docs-52fd697` also reached an `ACTIVATED` registry checkpoint after its finalized assessment parent and finalized registry child.
+The two contracts are deployed and configured on Studionet 61999.
 
-The machine-readable transaction and lifecycle record is [deployments/studionet.json](deployments/studionet.json). A second attempted assessment returned `INCONCLUSIVE`; it is not represented as proof of replay protection. The stale-sequence live path and production frontend deployment remain unverified. Use `DEPLOYMENT_RUNBOOK.md`, `REVIEW_TARGET.md` and `VALIDATION_REPORT.md` for the evidence and remaining checks.
+- **FreleaseRegistry:** `0x9658E192cdA77De11b7Fa173e7cd998791DB8578`
+- **FreleaseEvaluator:** `0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704`
+
+Both deployment transactions and the one-time evaluator configuration transaction reached `FINALIZED`. Both deployed source bodies match the local contract sources after line-ending normalization.
+
+The positive candidate `frelease-docs-52fd697` reached an `ACTIVATED` Registry checkpoint after its assessment parent and finalized-only Registry child both reached `FINALIZED`. The canonical policy head is sequence 1.
+
+The machine-readable deployment/lifecycle evidence is in [deployments/studionet.json](deployments/studionet.json).
+
+## Validation status
+
+GitHub CI is green for contract compilation, 16 deterministic tests, both GenVM lint/validation checks, 10 Direct Mode tests, the release architecture guard, frontend install/typecheck and the Next.js production build.
+
+The latest Vercel status for the current repository configuration is also **success** after the root dependency and `web/.next` output-directory fixes. A verified public production URL is not stored in this repository, so none is invented here.
+
+The live positive lifecycle is complete. Additional live stale-sequence and artifact-replay demonstrations are optional strengthening evidence; both protections already have green Direct Mode coverage. See `REVIEW_TARGET.md`, `VALIDATION_REPORT.md` and `SUBMISSION_CHECKLIST.md` for the exact evidence boundary.
