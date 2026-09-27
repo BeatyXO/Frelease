@@ -1,3 +1,8 @@
-contracts:
-  - contracts/frelease_registry.py
-  - contracts/frelease_evaluator.py
+networks:
+  default: localnet
+  localnet:
+    url: "http://127.0.0.1:4000/api"
+  studionet: {}
+paths:
+  contracts: "contracts"
+environment: .env
