@@ -1,67 +1,103 @@
 # Frelease validation and deployment report
 
+## Submission status
+
+Frelease's core deployment and positive lifecycle are complete on **GenLayer Studionet (chain 61999)**. The remaining unexecuted items are additional live negative-path demonstrations and an interactive injected-wallet smoke test; they are not required to establish that the deployed positive Frelease lifecycle works.
+
 ## Repository and CI
 
-The most recent completed CI run before this report-only update is [36342835472](https://github.com/BeatyXO/Frelease/actions/runs/36342835472), successful for commit `5bd9f996a20bfd446fe8c150ebb490cff237e415` (2026-09-27). It includes the project's test/build workflow. Earlier detailed test counts were recorded for commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc`, run `36336956469`: 16 deterministic tests, 10 Direct Mode tests, both GenVM lint/schema validations, and frontend install, typecheck and build all passed.
+The most recent full GitHub Actions run is [36342835472](https://github.com/BeatyXO/Frelease/actions/runs/36342835472), successful for commit `5bd9f996a20bfd446fe8c150ebb490cff237e415` on 2026-09-27.
 
-This Windows workspace has no Git metadata. A fresh `npm install --no-audit --no-fund` completed successfully. `npm run typecheck` and `npm run build` both passed locally, including a production build with `.env.local` set to the verified Studionet addresses and RPC/explorer endpoints. The environment file is git-ignored.
+Verified CI coverage includes:
 
-The built app was opened locally against Studionet and smoke-checked on `/`, `/releases`, `/policy/new`, the live policy detail, `/candidate/new`, the activated candidate detail and `/history/frelease-main-compat-2026`. The history displayed the finalized `ACTIVATED` sequence 1 record and the separate `BLOCKED / INCONCLUSIVE` sequence 2 record. At the browser's 394 px viewport, all checked routes rendered without horizontal overflow. This in-app browser has no injected `window.ethereum` provider, so wallet popover, reload reconnection, copy, disconnect and wrong-network switch could not be exercised interactively.
+- Python compilation: **PASS** for both contracts.
+- Deterministic/source-invariant suite: **16 passed**.
+- GenVM lint + validation: **PASS** for both contracts.
+  - `FreleaseRegistry`: 11 methods (7 view, 4 write).
+  - `FreleaseEvaluator`: 7 methods (5 view, 2 write).
+- Direct Mode: **10 passed**.
+- `scripts/release_check.py`: **RELEASE CHECK OK**.
+- Frontend dependency installation: **PASS**.
+- Frontend TypeScript typecheck: **PASS**.
+- Frontend production build: **PASS**.
+
+The built frontend was also smoke-checked locally against Studionet on `/`, `/releases`, `/policy/new`, the live policy detail, `/candidate/new`, the activated candidate detail and `/history/frelease-main-compat-2026`. At a 394 px viewport, the checked routes rendered without horizontal overflow.
 
 ## Live Studionet deployment
 
-`deployments/studionet.json` records the verified chain-61999 deployment. Registry and Evaluator deployment transactions, plus the one-time evaluator-binding transaction, reached `FINALIZED`. `get_config()` returned the deployed evaluator address and deployer owner. Both deployed source bodies fetched over RPC matched local source after line-ending normalization. The exposed schema counts match the CI-validated APIs: Registry 11 methods (7 view, 4 write), Evaluator 7 methods (5 view, 2 write). No schema hash is asserted.
+`deployments/studionet.json` records the canonical deployment.
 
-## Live lifecycle
+- **FreleaseRegistry:** `0x9658E192cdA77De11b7Fa173e7cd998791DB8578`
+- **FreleaseEvaluator:** `0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704`
 
-The positive candidate `frelease-docs-52fd697` binds source commit `52fd697e0528fee1545d2cd07c67967a40234a7d` and archive SHA-256 `21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33`. Its assessment parent and finalized-only Registry child both reached `FINALIZED`. The readback was verdict `COMPATIBLE`, checkpoint `ACTIVATED`, reason `FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT`, head sequence 1. Evidence receipts and snapshot/assessment digests are in the deployment JSON.
+Registry and Evaluator deployment transactions reached `FINALIZED`. The one-time Registry → Evaluator configuration transaction also reached `FINALIZED`, and `get_config()` returned the expected evaluator and owner addresses.
 
-One duplicate-artifact attempt did not supply the recommended replay proof: evaluator verdict `INCONCLUSIVE`. Its finalized checkpoint was read back as `BLOCKED` with reason `VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY`; no `ARTIFACT_ALREADY_ACTIVATED` proof is claimed. A live stale-sequence proof has not been run.
+Both deployed contract source bodies were fetched and matched the local contract sources after line-ending normalization. The exposed method counts match the CI-validated APIs. No on-chain schema hash is claimed because none was captured from the available tooling.
 
-## Current environment limits
+## Positive live lifecycle
 
-- The selected deployer account remains configured in GenLayer CLI, but its private key is no longer unlocked in the OS keychain. No further wallet-signed transactions were attempted.
-- Direct RPC reads required network-enabled execution. The canonical deployment, positive checkpoint/head, replay checkpoint and both deployed source bodies were retrieved and recorded.
-- No Vercel project binding or production URL is configured in this repository. A production site deployment and interactive wallet smoke tests are not claimed.
+The positive candidate `frelease-docs-52fd697` binds:
 
-## Vercel build follow-up
+- source commit: `52fd697e0528fee1545d2cd07c67967a40234a7d`
+- artifact SHA-256: `21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33`
 
-The Vercel build log provided after commit `378f1e3b0b0413ccab0feabeef23a1cc635f103d` first exposed missing React/Node type packages in the root install; those packages are now in the root build manifest. Its next run compiled and generated routes but failed after build because Vercel searched for `.next` at repository root while Next wrote `web/.next`. `vercel.json` now sets the output directory to `web/.next`. Vercel redeployment is still required to verify this platform-specific setting in its clean build environment.
+The assessment parent transaction reached `FINALIZED`. Its finalized-only Registry child also reached `FINALIZED`.
 
-## Verified repository state
+Canonical readback:
 
-GitHub validation was completed against source commit `683ff7cbe1f579cb4ec0429e2d09b9817f1648bc` in CI run `36336956469` on 2026-09-27, as recorded in the source manifest.
+- verdict: `COMPATIBLE`
+- checkpoint: `ACTIVATED`
+- checkpoint reason: `FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT`
+- policy head sequence: `1`
+- policy head candidate: `frelease-docs-52fd697`
 
-### Contracts
+Evidence-window receipts, the aggregate evidence snapshot digest and assessment digest are recorded in `deployments/studionet.json`.
 
-- Python syntax compilation: **PASS** for both contracts.
-- Deterministic/source-invariant suite: **16 passed**.
-- `genvm-lint check contracts/frelease_registry.py`: **PASS** — lint and validation passed; schema exposes **11 methods (7 view, 4 write)**.
-- `genvm-lint check contracts/frelease_evaluator.py`: **PASS** — lint and validation passed; schema exposes **7 methods (5 view, 2 write)**.
-- Direct Mode: **10 passed**.
-- `scripts/release_check.py`: **RELEASE CHECK OK**.
+This demonstrates the intended Frelease boundary: a semantic finding does not become a release head until the evaluator transaction finalizes and the Registry's deterministic child transaction also finalizes.
 
-The Direct Mode lifecycle suite covers one-time evaluator configuration, authorization, policy normalization, positive finalized activation, stale/out-of-order finalization, artifact replay blocking, policy-retirement blocking, duplicate evidence URLs, private/link-local evidence hosts and typed multi-origin manifests.
+## Negative-path evidence
 
-### Frontend
+The repository contains **green Direct Mode coverage** for the important deterministic negative paths, including:
 
-GitHub CI independently completed:
+- stale/out-of-order sequence blocking;
+- artifact replay blocking;
+- policy-retirement blocking;
+- unauthorized evaluator configuration/calls;
+- duplicate evidence URL rejection;
+- private/link-local evidence host rejection.
 
-- `npm install --no-audit --no-fund`: **PASS**.
-- `npm run typecheck`: **PASS**.
-- `npm run build`: **PASS**.
+One live duplicate-artifact attempt was also executed on Studionet. It finalized as `INCONCLUSIVE`, so the Registry correctly stored a `BLOCKED` checkpoint with reason `VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY`. Because the semantic verdict was not activatable, that transaction does **not** count as live proof of `ARTIFACT_ALREADY_ACTIVATED`.
 
-The frontend implements the yellow/green release-rail design and the policy → candidate → assessment → finalized checkpoint/history flow. Wallet state is restored from the injected provider using `eth_accounts`, listens for account/chain changes, never caches an address as source of truth, and exposes the full address, **Copy wallet address**, network switching and **Disconnect** from the connected-wallet popover. A manual-disconnect opt-out prevents silent reload reconnection on wallets that do not support permission revocation.
+A live `STALE_OR_NON_MONOTONIC_SEQUENCE` transaction has not been executed. These two additional live negative demonstrations are optional reviewer-strengthening evidence; they are not represented as completed.
 
-## Not yet claimed
+## Frontend / Vercel
 
-No canonical Studionet deployment has been performed from this environment. `deployments/studionet.json` is therefore intentionally absent; `deployments/studionet.example.json` is a schema example only. The repository does **not** claim:
+The frontend uses the yellow/green release-rail design and implements the policy → candidate → assessment → finalized checkpoint/history flow.
 
-- FreleaseRegistry or FreleaseEvaluator contract addresses;
-- deployment/configuration transaction IDs;
-- deployed-source parity receipts or on-chain schema hashes;
-- a finalized parent assessment + finalized registry child lifecycle;
-- live stale-sequence/artifact-replay transaction evidence;
-- a production frontend URL connected to canonical contract addresses.
+Wallet behavior in source:
 
-Those are the remaining handoff tasks. No deployment receipt, address, hash or production URL is invented.
+- injected wallet only;
+- reload restoration through `eth_accounts`;
+- no cached address used as wallet truth;
+- `accountsChanged` and `chainChanged` listeners;
+- connected-wallet popover with full address;
+- **Copy wallet address**;
+- network switch;
+- **Disconnect**;
+- manual-disconnect opt-out for wallets that do not support permission revocation.
+
+GitHub reports the latest **Vercel check as successful** for commit `d4b65927f0ecc8a289e4dd63023b5920bdb3b229` after the root TypeScript dependency and `web/.next` output-directory fixes.
+
+The repository does not contain a verified public production URL, so no public `*.vercel.app` address is invented here. Interactive wallet reload/copy/disconnect/wrong-network behavior also remains unclaimed because the smoke-test browser did not expose an injected `window.ethereum` provider.
+
+## Remaining non-blocking evidence
+
+The only items not claimed as complete are:
+
+1. a live compatible duplicate-artifact transaction that reaches the specific `ARTIFACT_ALREADY_ACTIVATED` Registry reason;
+2. a live out-of-order candidate transaction that reaches `STALE_OR_NON_MONOTONIC_SEQUENCE`;
+3. an interactive production smoke test with a real injected wallet;
+4. recording a public production frontend URL if/when it is surfaced by the Vercel project;
+5. an on-chain schema hash, if future tooling exposes one.
+
+No address, receipt, status, hash or frontend URL is invented.
