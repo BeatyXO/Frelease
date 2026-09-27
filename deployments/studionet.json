@@ -18,7 +18,7 @@
       "deployment_status": "FINALIZED",
       "constructor_registry": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
       "schema_methods": { "total": 7, "view": 5, "write": 2 },
-      "deployed_source_parity": "NOT_RECORDED_IN_THIS_MANIFEST"
+      "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
     }
   },
   "configuration": {
@@ -68,8 +68,12 @@
       "assessment_parent_status": "FINALIZED",
       "assessment_child_transaction": "0xa3b04e8c24bff781c6c67912b01b278722a23bcd698e9450ec98cb1e8def181d",
       "assessment_child_status": "FINALIZED",
+      "checkpoint_readback": "BLOCKED",
+      "checkpoint_reason": "VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY",
+      "checkpoint_verdict": "INCONCLUSIVE",
+      "checkpoint_assessment_digest": "eb124931f45ae22b8dbd9e06047f79f3950b71130d86c49ad7aacc9841161758",
+      "checkpoint_recorded_at": "2026-09-27T18:42:55.347328Z",
       "verdict": "INCONCLUSIVE",
-      "negative_checkpoint_reason": "NOT_YET_READ_BACK",
       "result": "DOES_NOT_PROVE_ARTIFACT_REPLAY_BLOCKING"
     },
     "stale_sequence": "NOT_EXECUTED"
@@ -79,5 +83,5 @@
     "url": null,
     "addresses_configured_in_production": false
   },
-  "verification_note": "This record captures completed deployment and lifecycle receipts from the live run. Registry config and the positive checkpoint/head were read back after finality. No schema hash or evaluator deployed-source parity is asserted."
+  "verification_note": "This record captures completed deployment and lifecycle receipts from the live run. Registry config and the positive and inconclusive-negative checkpoints were read back after finality. Both deployed sources match their local files after line-ending normalization. No schema hash is asserted."
 }

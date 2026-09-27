@@ -8,18 +8,18 @@ This Windows workspace has no Git metadata. A fresh `npm install --no-audit --no
 
 ## Live Studionet deployment
 
-`deployments/studionet.json` records the verified chain-61999 deployment. Registry and Evaluator deployment transactions, plus the one-time evaluator-binding transaction, reached `FINALIZED`. `get_config()` returned the deployed evaluator address and deployer owner. Registry deployed-source bytes matched local source after line-ending normalization. The exposed schema counts match the CI-validated APIs: Registry 11 methods (7 view, 4 write), Evaluator 7 methods (5 view, 2 write). No schema hash is asserted, and Evaluator deployed-source parity is not confirmed in the record.
+`deployments/studionet.json` records the verified chain-61999 deployment. Registry and Evaluator deployment transactions, plus the one-time evaluator-binding transaction, reached `FINALIZED`. `get_config()` returned the deployed evaluator address and deployer owner. Both deployed source bodies fetched over RPC matched local source after line-ending normalization. The exposed schema counts match the CI-validated APIs: Registry 11 methods (7 view, 4 write), Evaluator 7 methods (5 view, 2 write). No schema hash is asserted.
 
 ## Live lifecycle
 
 The positive candidate `frelease-docs-52fd697` binds source commit `52fd697e0528fee1545d2cd07c67967a40234a7d` and archive SHA-256 `21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33`. Its assessment parent and finalized-only Registry child both reached `FINALIZED`. The readback was verdict `COMPATIBLE`, checkpoint `ACTIVATED`, reason `FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT`, head sequence 1. Evidence receipts and snapshot/assessment digests are in the deployment JSON.
 
-One duplicate-artifact attempt did not supply the recommended replay proof: evaluator verdict `INCONCLUSIVE`. Its finalized transactions are retained in the manifest, but no `ARTIFACT_ALREADY_ACTIVATED` checkpoint is claimed. A live stale-sequence proof has not been run.
+One duplicate-artifact attempt did not supply the recommended replay proof: evaluator verdict `INCONCLUSIVE`. Its finalized checkpoint was read back as `BLOCKED` with reason `VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY`; no `ARTIFACT_ALREADY_ACTIVATED` proof is claimed. A live stale-sequence proof has not been run.
 
 ## Current environment limits
 
 - The selected deployer account remains configured in GenLayer CLI, but its private key is no longer unlocked in the OS keychain. No further wallet-signed transactions were attempted.
-- Direct RPC reads from this process currently fail with network access denied/timeout. Previously captured canonical readbacks and finalized receipts are recorded above.
+- Direct RPC reads required network-enabled execution. The canonical deployment, positive checkpoint/head, replay checkpoint and both deployed source bodies were retrieved and recorded.
 - No Vercel project binding or production URL is configured in this repository. A production site deployment and route/wallet smoke tests are not claimed.
 
 ## Verified repository state

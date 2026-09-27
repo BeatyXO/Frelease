@@ -25,9 +25,9 @@ cd web && npm install && npm run typecheck && npm run build
 
 `deploy/deployScript.ts` performs the deployment/configuration sequence and writes `deployments/studionet.json`.
 
-The current deployment is recorded in `deployments/studionet.json`. Registry, Evaluator and evaluator-binding transactions all reached `FINALIZED`. The registry `get_config()` readback matched the evaluator and owner addresses. Registry source parity was confirmed after normalizing line endings; evaluator parity and schema hashes were not recorded. The example file remains illustrative only.
+The current deployment is recorded in `deployments/studionet.json`. Registry, Evaluator and evaluator-binding transactions all reached `FINALIZED`. The registry `get_config()` readback matched the evaluator and owner addresses. Both deployed source bodies match local source after normalizing line endings; schema hashes were not recorded. The example file remains illustrative only.
 
-After deployment, independently verify `registry.get_config()` returns the evaluator address. Compare both deployed contract sources to local source hashes and record schema hashes only when verified. This deployment record confirms Registry source parity, and explicitly leaves Evaluator parity unverified.
+After deployment, independently verify `registry.get_config()` returns the evaluator address. Both deployed contract sources were fetched over RPC and matched the local source after line-ending normalization. Record schema hashes only when verified.
 
 ## Frontend environment
 
