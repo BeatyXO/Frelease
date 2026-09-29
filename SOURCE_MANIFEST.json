@@ -77,8 +77,8 @@
       "bytes": 263
     },
     "deployments/studionet.json": {
-      "sha256": "557abb6888808d29bbae19c7a886846518ae3ec23a07131b0b1e78ace29d2210",
-      "bytes": 6908
+      "sha256": "9fe24870a24c854b6e7482a2c9d3de5c2f4d906aac4659a587c5ea012a60756d",
+      "bytes": 6946
     },
     "gltest.config.yaml": {
       "sha256": "630fcd7dba2a671b725d63a407bb73a476f3a88bebf0ea5c7d4e869691e9dba7",

@@ -4,7 +4,7 @@
   "rpc_url": "https://studio.genlayer.com/api",
   "canonical_status": "CORRECTED_FINAL_SOURCE_PAIR_DEPLOYED_AND_LIVE_VERIFIED",
   "deployer": "0x7876e9f76f32925c212528d57bc9dfe5e34bCC07",
-  "source_commit": null,
+  "source_commit": "5bfb077d81d17fee53df58407f25795029afaf25",
   "source_baseline_commit": "0ab599f7bcde727bc4939ad6d1fc27d4efd1b150",
   "contracts": {
     "FreleaseRegistry": {
