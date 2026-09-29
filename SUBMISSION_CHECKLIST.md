@@ -11,7 +11,7 @@
 - [x] Live wrong-commit evidence rejected as `COMMIT_MISMATCH` / `INCONCLUSIVE`; Registry checkpoint `BLOCKED`; policy head unchanged.
 - [x] 24 unit tests and 17 Direct Mode tests pass.
 - [x] Frontend typecheck, production build and eight lifecycle tests pass.
-- [ ] GenVM lint full SDK validation; static checks pass, SDK cache access fails with Windows `WinError 5`.
-- [ ] Push corrected commit to `main` and record the resulting GitHub Actions run.
+- [x] GenVM lint full SDK validation passed in the Linux GitHub Actions contracts job (local Windows SDK cache had a permission error).
+- [x] Push corrected commit to `main` and record the successful GitHub Actions run `36608851753`.
 - [ ] Interactive wallet-based finalize/appeal screen smoke test; no injected wallet provider is available in the browser.
-- [ ] Production frontend deployment and canonical address smoke test.
+- [ ] Production Vercel redeployment with canonical corrected Studionet Registry/Evaluator environment variables — owner-managed Vercel step.

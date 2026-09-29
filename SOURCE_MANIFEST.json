@@ -1,7 +1,7 @@
 {
   "format": "frelease-source-manifest-v1",
   "last_verified_base_commit": "0ab599f7bcde727bc4939ad6d1fc27d4efd1b150",
-  "deployment_status": "Corrected canonical Studionet pair and positive/negative lifecycle verified; implementation source commit recorded in deployments/studionet.json",
+  "deployment_status": "Corrected canonical Studionet pair and positive/negative lifecycle verified; cleanup published with deterministic Vercel repository configuration",
   "excluded": [
     "generated dependencies/build output",
     "local environment files",
@@ -41,24 +41,24 @@
       "bytes": 6210
     },
     "REVIEWER_REMEDIATION.md": {
-      "sha256": "6e11bafd9ff60ef8334f4d4b483ba0e10379f777d8bf2d30fbabc8097e0ec3d6",
-      "bytes": 4998
+      "sha256": "6a0916de00d81505f65100d2fe8805373004adee0a7ce40797365fd3ed073b08",
+      "bytes": 5471
     },
     "REVIEW_TARGET.md": {
-      "sha256": "21fb9a79ef3af99688c8b3c274f9b138c131387a3e32066849cafb18e833fe14",
-      "bytes": 1141
+      "sha256": "836746718daf0786d05012d0e09be6331728d0aa6c6100c90ad68e4a7765b408",
+      "bytes": 1299
     },
     "SUBMISSION_CHECKLIST.md": {
-      "sha256": "cc6e02be404833f46197806702f3114029c16f371dce2e244fa13792e1ab5417",
-      "bytes": 1469
+      "sha256": "c5fbac69552a7cd73bf7b6f9053282a1f783bb488b157c8cdc99e28a4e59e680",
+      "bytes": 1585
     },
     "THREAT_MODEL.md": {
       "sha256": "b304bfd818061bf6655574e13c50b267412dfb9ac0ac3a2f20a5e78a70fdfda3",
       "bytes": 1790
     },
     "VALIDATION_REPORT.md": {
-      "sha256": "e41e0c3ee578447729909328424a8e972ca15dbb67ce05ffe798d723cf68660f",
-      "bytes": 3439
+      "sha256": "dad4078cf2486f8ffe54a8d5ab19a735a5019684230c0657086cd0b96a837bf6",
+      "bytes": 3921
     },
     "contracts/frelease_evaluator.py": {
       "sha256": "4e97152241d9278ba38700d29dd90b1eafd76773cce4ff5a15cebe44302a7d4e",
@@ -121,8 +121,12 @@
       "bytes": 2773
     },
     "vercel.json": {
-      "sha256": "ef160acceaa878754cea24e6d86ba5cd07be3a8fc27cb306cb79e118ab07fe93",
-      "bytes": 91
+      "sha256": "f09c0fccdb3867cd6d57f1252734cca45f15944b63de404baca0df3db398a8b0",
+      "bytes": 206
+    },
+    "web/.env.example": {
+      "sha256": "43ed9b17c860dc8ba866ae381084c531a840358f8e74129ec90e197890efc0b6",
+      "bytes": 291
     },
     "web/app/candidate/[candidateKey]/page.tsx": {
       "sha256": "02bc27a84390cb7afe827581ea985219996002665c72a8704aa29b9c5776143b",

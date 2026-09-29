@@ -2,7 +2,9 @@
 
 ## Current status
 
-The deterministic provenance implementation, candidate finality actions, and finality-gated activation UI are present in this correction set. The audited remote `main` baseline was `0ab599f7bcde727bc4939ad6d1fc27d4efd1b150`; it only refreshed checksums and did not contain these fixes. The corrected pair and fresh positive/negative lifecycle have been verified on Studionet. GitHub publication and Actions status remain pending until push completes.
+The deterministic provenance implementation, candidate finality actions, and finality-gated activation UI are present in this correction set. The audited remote `main` baseline was `0ab599f7bcde727bc4939ad6d1fc27d4efd1b150`; implementation correction is `5bfb077d81d17fee53df58407f25795029afaf25`. The current published head before this cleanup is `806bd81289f8eb2d5001fedf216bb5ab8960d273`. The corrected pair and fresh positive/negative lifecycle have been verified on Studionet. GitHub Actions run [36608851753](https://github.com/BeatyXO/Frelease/actions/runs/36608851753) passed both jobs.
+
+The root Vercel configuration now installs and builds the Next.js application from `web/`. The Vercel dashboard environment values remain owner-managed and require a production redeployment after the canonical public RPC, explorer, Registry and Evaluator values are entered.
 
 A fresh corrected two-contract pair is deployed and configured on Studionet. See `deployments/studionet.json` for addresses, source hashes, finalized deployment/configuration transactions, candidate evidence, assessment and Registry child status. The previous pairs are listed under `noncanonical_pairs` as historical and are not designated canonical.
 
@@ -43,4 +45,4 @@ Direct Mode includes fetched-document cases for exact match (`VERIFIED`), wrong 
 - `genvm-lint check` for both contracts: 3 static checks pass per contract; overall validation exits nonzero because the SDK cache cannot be read (`WinError 5: Access is denied`).
 - `npm install`: passed; `npm run typecheck`: passed; `npm run build`: passed.
 - `python scripts/release_check.py`: `RELEASE CHECK OK`.
-- GitHub Actions for the correction has not run yet; the remote push and resulting Actions status remain outstanding.
+- GitHub Actions run `36608851753` passed: contracts and frontend jobs both succeeded, including GenVM lint, Direct Mode, typecheck, lifecycle tests and production build.
