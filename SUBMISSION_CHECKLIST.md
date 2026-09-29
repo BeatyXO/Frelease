@@ -1,36 +1,17 @@
 # Submission checklist
 
-- [x] Two-contract clean architecture
-- [x] Frozen policy digest
-- [x] Exact candidate commit + artifact digest
-- [x] Typed HTTPS evidence policy
-- [x] SSRF-oriented evidence URL validation
-- [x] Independent validator assessment
-- [x] Evidence-window SHA-256 receipts
-- [x] Deterministic semantic coherence law
-- [x] Finalized-only evaluator → registry boundary
-- [x] Monotonic release head
-- [x] Retired-policy block
-- [x] Artifact replay block
-- [x] Full create/read/assess/history frontend flows
-- [x] Injected-wallet reload persistence + copy + disconnect UI implemented
-- [x] CI definition
-- [x] 16 deterministic tests green in GitHub CI
-- [x] GenVM lint + validation green for both contracts
-- [x] Direct Mode green — 10 passed
-- [x] Frontend install/typecheck/production build green
-- [x] Local Studionet frontend route smoke and 394 px overflow checks
-- [x] Release architecture guard green
-- [x] Historical CI evidence documented with source commit and run ID
-- [x] Canonical Studionet deployment and one-time evaluator configuration
-- [x] Deployment/configuration finality receipts recorded in `deployments/studionet.json`
-- [x] Both deployed source bodies match local contract source after line-ending normalization
-- [x] Finalized parent assessment + finalized Registry child
-- [x] Canonical checkpoint readback `ACTIVATED`
-- [x] Canonical policy head readback sequence 1
-- [x] Latest Vercel check successful after root dependency/output-directory fixes
-- [ ] Optional: live `ARTIFACT_ALREADY_ACTIVATED` proof (Direct Mode coverage is green; one live replay attempt was `INCONCLUSIVE`)
-- [ ] Optional: live `STALE_OR_NON_MONOTONIC_SEQUENCE` proof (Direct Mode coverage is green)
-- [ ] Optional: interactive injected-wallet smoke on deployed frontend
-- [ ] Optional: record public production frontend URL when surfaced by Vercel project
-- [ ] Optional: on-chain schema hash if tooling exposes one
+- [x] Two-contract architecture preserved.
+- [x] Deterministic fetched provenance compares registered commit and artifact SHA-256.
+- [x] Direct Mode behavioral tests cover match, each mismatch, both mismatch, missing and malformed provenance.
+- [x] Unverified provenance forces `INCONCLUSIVE`.
+- [x] Candidate page connects `inspectTx`, `finalizeTx` and `appealTx`; activation gate requires finalized assessment, matching Registry checkpoint and policy head.
+- [x] Lifecycle decision tests cover Finalize, Appeal, provisional/semantic/finalized-without-checkpoint/blocked/activated states.
+- [x] New corrected Registry/Evaluator pair deployed and configured on Studionet; source parity verified.
+- [x] Fresh positive live lifecycle reached finalized `ACTIVATED` Registry checkpoint and policy head.
+- [x] Live wrong-commit evidence rejected as `COMMIT_MISMATCH` / `INCONCLUSIVE`; Registry checkpoint `BLOCKED`; policy head unchanged.
+- [x] 24 unit tests and 17 Direct Mode tests pass.
+- [x] Frontend typecheck, production build and eight lifecycle tests pass.
+- [ ] GenVM lint full SDK validation; static checks pass, SDK cache access fails with Windows `WinError 5`.
+- [ ] Push corrected commit to `main` and record the resulting GitHub Actions run.
+- [ ] Interactive wallet-based finalize/appeal screen smoke test; no injected wallet provider is available in the browser.
+- [ ] Production frontend deployment and canonical address smoke test.

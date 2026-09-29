@@ -1,5 +1,9 @@
 import hashlib
 import json
+import ast
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def coherent(f):
@@ -77,3 +81,58 @@ def test_policy_digest_is_stable_for_canonical_json():
     left=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(",",":")).encode()).hexdigest()
     right=hashlib.sha256(json.dumps({"required":["API_SURFACE","TEST_REPORT"],"rule":"no removals","project":"demo"},sort_keys=True,separators=(",",":")).encode()).hexdigest()
     assert left == right
+
+
+def provenance_matches(manifest_text, commit_sha, artifact_sha256):
+    source = (ROOT / "contracts" / "frelease_evaluator.py").read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    contract = next(node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == "FreleaseEvaluator")
+    matcher = next(node for node in contract.body if isinstance(node, ast.FunctionDef) and node.name == "_provenance_observation")
+    namespace = {"json": json, "re": __import__("re")}
+    exec(compile(ast.Module(body=[matcher], type_ignores=[]), "frelease_evaluator.py", "exec"), namespace)
+    return namespace["_provenance_observation"](None, manifest_text, commit_sha, artifact_sha256)
+
+
+def test_candidate_provenance_accepts_exact_commit_and_artifact():
+    commit, digest = "a" * 40, "b" * 64
+    evidence = json.dumps({"provenance": {"commit_sha": commit, "artifact_sha256": digest}})
+    assert provenance_matches(evidence, commit, digest)["verified"]
+
+
+def test_candidate_provenance_rejects_mismatched_commit():
+    evidence = json.dumps({"commit_sha": "c" * 40, "artifact_sha256": "b" * 64})
+    assert provenance_matches(evidence, "a" * 40, "b" * 64)["status"] == "COMMIT_MISMATCH"
+
+
+def test_candidate_provenance_rejects_mismatched_artifact():
+    evidence = json.dumps({"commit_sha": "a" * 40, "artifact_sha256": "c" * 64})
+    assert provenance_matches(evidence, "a" * 40, "b" * 64)["status"] == "ARTIFACT_MISMATCH"
+
+
+def test_candidate_provenance_rejects_missing_or_invalid_manifest():
+    assert provenance_matches('{"commit_sha":"' + "a" * 40 + '"}', "a" * 40, "b" * 64)["status"] == "MISSING_FIELDS"
+    assert provenance_matches("not json", "a" * 40, "b" * 64)["status"] == "MALFORMED"
+
+
+def test_contract_uses_same_provenance_matcher():
+    evaluator = (ROOT / "contracts" / "frelease_evaluator.py").read_text(encoding="utf-8")
+    assert "def _provenance_matches_candidate" in evaluator
+    assert 'observed_commit_sha": observed_commit' in evaluator
+    assert 'observed_artifact_sha256": observed_artifact' in evaluator
+
+
+def immutable_provenance_url(url):
+    source = (ROOT / "contracts" / "frelease_evaluator.py").read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    contract = next(node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == "FreleaseEvaluator")
+    matcher = next(node for node in contract.body if isinstance(node, ast.FunctionDef) and node.name == "_provenance_url_is_immutable")
+    namespace = {"urlsplit": __import__("urllib.parse", fromlist=["urlsplit"]).urlsplit, "re": __import__("re")}
+    exec(compile(ast.Module(body=[matcher], type_ignores=[]), "frelease_evaluator.py", "exec"), namespace)
+    return namespace["_provenance_url_is_immutable"](None, url)
+
+
+def test_provenance_manifest_must_use_commit_pinned_github_raw_url():
+    commit = "c" * 40
+    assert immutable_provenance_url(f"https://raw.githubusercontent.com/acme/project/{commit}/build.json")
+    assert not immutable_provenance_url("https://raw.githubusercontent.com/acme/project/main/build.json")
+    assert not immutable_provenance_url(f"https://example.org/acme/project/{commit}/build.json")

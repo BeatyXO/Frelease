@@ -41,6 +41,9 @@ jobs:
       - name: Frontend typecheck
         working-directory: web
         run: npm run typecheck
+      - name: Frontend lifecycle tests
+        working-directory: web
+        run: npm run test:lifecycle
       - name: Frontend production build
         working-directory: web
         run: npm run build

@@ -176,6 +176,93 @@ class FreleaseEvaluator(gl.Contract):
             return evidence == "SUFFICIENT" and required == "YES" and (surface == "CHANGED" or regression == "MATERIAL")
         return True
 
+    def _provenance_observation(self, content: str, commit_sha: str, artifact_sha256: str) -> dict:
+        """Parse fetched immutable provenance and report deterministic identity comparison."""
+        observed_commit = ""
+        observed_artifact = ""
+        status = "MALFORMED"
+        try:
+            manifest = json.loads(content)
+        except Exception:
+            manifest = None
+        if manifest is None:
+            # The repository's immutable demo manifest is Markdown. Parse only
+            # the two explicit labeled fields; never accept caller-supplied values.
+            commit_match = re.search(r"(?im)^Source commit:\s*([a-f0-9]{40})\s*$", content)
+            artifact_match = re.search(r"(?im)^Artifact SHA-256:\s*([a-f0-9]{64})\s*$", content)
+            if commit_match and artifact_match:
+                manifest = {"provenance": {
+                    "commit_sha": commit_match.group(1),
+                    "artifact_sha256": artifact_match.group(1),
+                }}
+        if isinstance(manifest, dict):
+            provenance = manifest.get("provenance", manifest)
+            if isinstance(provenance, dict):
+                observed_commit = str(provenance.get("commit_sha", "")).strip().lower()
+                observed_artifact = str(provenance.get("artifact_sha256", "")).strip().lower()
+                if (re.fullmatch(r"[a-f0-9]{40}", observed_commit or "")
+                        and re.fullmatch(r"[a-f0-9]{64}", observed_artifact or "")):
+                    if observed_commit != str(commit_sha).strip().lower():
+                        status = "COMMIT_MISMATCH"
+                    elif observed_artifact != str(artifact_sha256).strip().lower():
+                        status = "ARTIFACT_MISMATCH"
+                    else:
+                        status = "VERIFIED"
+                elif not observed_commit or not observed_artifact:
+                    status = "MISSING_FIELDS"
+        return {
+            "expected_commit_sha": str(commit_sha).strip().lower(),
+            "observed_commit_sha": observed_commit,
+            "expected_artifact_sha256": str(artifact_sha256).strip().lower(),
+            "observed_artifact_sha256": observed_artifact,
+            "status": status,
+            "verified": status == "VERIFIED",
+        }
+
+    def _provenance_matches_candidate(self, content: str, commit_sha: str, artifact_sha256: str) -> bool:
+        return self._provenance_observation(content, commit_sha, artifact_sha256)["verified"]
+
+    def _enforce_provenance_gate(self, finding: dict, provenance: dict) -> dict:
+        """Fail closed on provenance before an evaluator finding can be activated."""
+        if provenance.get("verified") is True:
+            return finding
+        status = str(provenance.get("status", "MALFORMED"))
+        reasons = {
+            "COMMIT_MISMATCH": "FETCHED_COMMIT_DOES_NOT_MATCH_REGISTERED_CANDIDATE",
+            "ARTIFACT_MISMATCH": "FETCHED_ARTIFACT_DOES_NOT_MATCH_REGISTERED_CANDIDATE",
+            "NON_IMMUTABLE_SOURCE": "PROVENANCE_SOURCE_IS_NOT_IMMUTABLY_PINNED",
+            "MISSING_FIELDS": "FETCHED_PROVENANCE_IS_MISSING_REQUIRED_IDENTITY_FIELDS",
+            "MISSING": "FETCHED_PROVENANCE_DOCUMENT_IS_MISSING",
+            "MALFORMED": "FETCHED_PROVENANCE_DOCUMENT_IS_MALFORMED",
+        }
+        gated = dict(finding)
+        gated.update({
+            "verdict": "INCONCLUSIVE",
+            "surface_compatibility": "UNCERTAIN",
+            "migration_requirement": "UNKNOWN",
+            "regression_signal": "UNKNOWN",
+            "evidence_sufficiency": "INSUFFICIENT",
+            "required_evidence_present": "NO",
+            "summary": f"Deterministic provenance verification failed ({status}); this finding is not activatable.",
+            "provenance": provenance,
+            "provenance_failure": {"status": status, "reason": reasons.get(status, "FETCHED_PROVENANCE_COULD_NOT_BE_VERIFIED")},
+        })
+        return gated
+
+    def _provenance_url_is_immutable(self, url: str) -> bool:
+        """Accept build manifests only at raw GitHub URLs pinned to a full Git commit."""
+        try:
+            parsed = urlsplit(url)
+        except Exception:
+            return False
+        parts = parsed.path.strip("/").split("/")
+        return (
+            parsed.scheme.lower() == "https"
+            and (parsed.hostname or "").lower() == "raw.githubusercontent.com"
+            and len(parts) >= 4
+            and re.fullmatch(r"[a-fA-F0-9]{40}", parts[2]) is not None
+        )
+
     @gl.public.write
     def begin_candidate(
         self,
@@ -268,6 +355,8 @@ class FreleaseEvaluator(gl.Contract):
         required_origins = [str(x).lower() for x in evidence_policy.get("required_origins", [])]
         disallowed = [origin for origin in origins if allowed_origins and origin not in allowed_origins]
         missing_origins = [origin for origin in required_origins if origin not in origins]
+        if "BUILD_MANIFEST" not in required_kinds:
+            missing_kinds.append("BUILD_MANIFEST")
         deterministic_ok = len(missing_kinds) == 0 and len(origins) >= min_origins and len(disallowed) == 0 and len(missing_origins) == 0
 
         frozen_context = {
@@ -292,6 +381,14 @@ class FreleaseEvaluator(gl.Contract):
         def run_assessment() -> str:
             evidence = []
             receipts = []
+            provenance = {
+                "expected_commit_sha": candidate["commit_sha"],
+                "observed_commit_sha": "",
+                "expected_artifact_sha256": candidate["artifact_sha256"],
+                "observed_artifact_sha256": "",
+                "status": "MISSING",
+                "verified": False,
+            }
             for item in manifest:
                 try:
                     rendered = gl.nondet.web.render(item["url"], mode="text")
@@ -299,6 +396,13 @@ class FreleaseEvaluator(gl.Contract):
                     if len(content) > 7500:
                         content = content[:7500]
                     status = "OK"
+                    if item["kind"] == "BUILD_MANIFEST":
+                        provenance = self._provenance_observation(
+                            content, candidate["commit_sha"], candidate["artifact_sha256"]
+                        )
+                        if not self._provenance_url_is_immutable(item["url"]):
+                            provenance["verified"] = False
+                            provenance["status"] = "NON_IMMUTABLE_SOURCE"
                 except Exception:
                     content = ""
                     status = "UNAVAILABLE"
@@ -318,6 +422,7 @@ class FreleaseEvaluator(gl.Contract):
                     "fetch_status": status,
                     "content_window_sha256": digest,
                     "content_window_chars": len(content),
+                    **({"provenance": provenance} if item["kind"] == "BUILD_MANIFEST" else {}),
                 })
 
             prompt = """
@@ -342,6 +447,7 @@ Decision law:
 - BREAKING only when evidence is sufficient, required evidence is present, and a protected-surface break or material regression is supported.
 - INCONCLUSIVE when evidence is missing, unavailable, conflicted, insufficient, or the compatibility rule cannot be applied confidently.
 - If deterministic_evidence_policy_satisfied is false, verdict must be INCONCLUSIVE and required_evidence_present must be NO.
+- BUILD_MANIFEST provenance may be a JSON document exposing commit_sha and artifact_sha256, or immutable Markdown exposing the exact labeled lines "Source commit:" and "Artifact SHA-256:". The contract has already parsed the fetched document and supplies a deterministic provenance status with the evidence receipts. Treat status VERIFIED as satisfying candidate provenance; never require a format the deterministic parser does not require. A missing or mismatched identity remains insufficient regardless of semantic reasoning.
 - Never infer deployment approval, business priority, or payout amounts.
 
 FROZEN POLICY AND CANDIDATE:
@@ -356,6 +462,7 @@ FROZEN POLICY AND CANDIDATE:
                 "required_evidence_present": str(result.get("required_evidence_present", "UNKNOWN")).upper(),
                 "summary": str(result.get("summary", ""))[:1800],
                 "evidence_receipts": receipts,
+                "provenance": provenance,
                 "evidence_snapshot_digest": self._digest(json.dumps(receipts, sort_keys=True, separators=(",", ":"))),
             }
             unavailable = any(item["fetch_status"] != "OK" for item in receipts)
@@ -367,10 +474,12 @@ FROZEN POLICY AND CANDIDATE:
                     "regression_signal": "UNKNOWN",
                     "evidence_sufficiency": "UNAVAILABLE" if unavailable else "INSUFFICIENT",
                     "required_evidence_present": "UNKNOWN" if unavailable else "NO",
-                    "summary": "The assessment could not satisfy the frozen evidence and compatibility decision law.",
+                    "summary": "The assessment could not satisfy the frozen evidence, candidate provenance, and compatibility decision law.",
                     "evidence_receipts": receipts,
+                    "provenance": provenance,
                     "evidence_snapshot_digest": self._digest(json.dumps(receipts, sort_keys=True, separators=(",", ":"))),
                 }
+            finding = self._enforce_provenance_gate(finding, provenance)
             return json.dumps(finding, sort_keys=True, separators=(",", ":"))
 
         def validate(leader_result) -> bool:
@@ -395,7 +504,7 @@ FROZEN POLICY AND CANDIDATE:
             for field in material:
                 if leader.get(field) != own.get(field):
                     return False
-            return leader.get("evidence_receipts") == own.get("evidence_receipts")
+            return leader.get("evidence_receipts") == own.get("evidence_receipts") and leader.get("provenance") == own.get("provenance")
 
         result_json = gl.vm.run_nondet_unsafe(run_assessment, validate)
         finding = json.loads(result_json)

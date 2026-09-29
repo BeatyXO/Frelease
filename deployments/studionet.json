@@ -2,115 +2,125 @@
   "network": "GenLayer Studionet",
   "chain_id": 61999,
   "rpc_url": "https://studio.genlayer.com/api",
-  "deployment_status": "DEPLOYED_AND_CONFIGURED",
-  "deployer": "0x7876e9f76f32925c212528d57bc9dfe5e34bcc07",
+  "canonical_status": "CORRECTED_FINAL_SOURCE_PAIR_DEPLOYED_AND_LIVE_VERIFIED",
+  "deployer": "0x7876e9f76f32925c212528d57bc9dfe5e34bCC07",
+  "source_commit": null,
+  "source_baseline_commit": "0ab599f7bcde727bc4939ad6d1fc27d4efd1b150",
   "contracts": {
     "FreleaseRegistry": {
-      "address": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
-      "deployment_transaction": "0xe5cea33aaaee18afea079fd39b272551cf638f14236360c73253527f9d9fd927",
+      "address": "0x43041f5D120001653623A1c66Ab33a8EaFca25F7",
+      "deployment_transaction": "0xefdbcac9add5da5c2659c28ef2b8f859697010631d5522e0dfccb7f17272cfd6",
       "deployment_status": "FINALIZED",
       "schema_methods": {
         "total": 11,
         "view": 7,
         "write": 4
       },
+      "source_sha256": "17eb71203c72fcb5cf76d104f6267521ce19a33296d71eeca9c2371a4519ca24",
       "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
     },
     "FreleaseEvaluator": {
-      "address": "0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704",
-      "deployment_transaction": "0x803d1bd66bab520f12560b4b6f2b1069e95c56547df392694414a5f591a94349",
+      "address": "0x7e1869298F9FcD847bd3aA764086F20a6589e991",
+      "deployment_transaction": "0x73bb910bc082522e0a4972c17518dfa974f2b3107d76cb0187c33c71cb535e1a",
       "deployment_status": "FINALIZED",
-      "constructor_registry": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
+      "constructor_registry": "0x43041f5D120001653623A1c66Ab33a8EaFca25F7",
       "schema_methods": {
         "total": 7,
         "view": 5,
         "write": 2
       },
+      "source_sha256": "4e97152241d9278ba38700d29dd90b1eafd76773cce4ff5a15cebe44302a7d4e",
       "deployed_source_parity": "CONFIRMED_EXACT_AFTER_LINE_ENDING_NORMALIZATION"
     }
   },
   "configuration": {
-    "transaction": "0xaf51e8c7726bd18899d1ccebaed66a148df6abe62a1ea0c1ee05dc5da63fb4a6",
+    "transaction": "0xe585713d907f90c8836a8465c338d04fa9bd87ad7e59403d989cc37a5a550ae9",
     "status": "FINALIZED",
-    "registry_get_config_evaluator": "0x8da441a76adeae929c9dd9febb77f0467da7e704",
-    "registry_get_config_owner": "0x7876e9f76f32925c212528d57bc9dfe5e34bcc07"
+    "registry_get_config_evaluator": "0x7e1869298F9FcD847bd3aA764086F20a6589e991",
+    "registry_get_config_owner": "0x7876e9f76f32925c212528d57bc9dfe5e34bCC07",
+    "evaluator_get_config_registry": "0x43041f5D120001653623A1c66Ab33a8EaFca25F7"
+  },
+  "policy": {
+    "key": "frelease-papito-2026-v3",
+    "digest": "32158ee12ada8e982112fcecb6875fdbd955be96391b432a41d904d153127ff6",
+    "registration_transaction": "0x913a0722552fede416223d27bd3fc4f55c18cc348338f5f34d0dfde9e2a89886",
+    "registration_status": "FINALIZED",
+    "status": "ACTIVE"
   },
   "positive_lifecycle": {
-    "policy_key": "frelease-main-compat-2026",
-    "policy_digest": "3d5ac65ffccaddbcf82574fb3b0e016d9b96011f8148f53bdcf2fb253425b17e",
-    "policy_registration_transaction": "0xc6fdd39443774d75a14f6e49b14cdbae3a920af4663484508210864d9bbf604a",
-    "candidate_key": "frelease-docs-52fd697",
+    "candidate_key": "papito-positive-v3-20260929",
     "sequence": 1,
-    "source_commit": "52fd697e0528fee1545d2cd07c67967a40234a7d",
-    "artifact_sha256": "21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33",
-    "artifact_size_bytes": 72301,
-    "candidate_registration_transaction": "0x8e95b1a4c9f6f7896e66d62a7c245a191ef673b0dc3aacf12b3b225a0c105475",
-    "assessment_parent_transaction": "0x62775e30a363e16f214365d01a4f09383bf297c0d65a6f8f342563c0209ffc3a",
-    "assessment_parent_status": "FINALIZED",
-    "assessment_child_transaction": "0x82084fddb9aa1bd680b5558a86b68c52bbb5a4fb9dee644698ad82c13904decb",
-    "assessment_child_status": "FINALIZED",
-    "verdict": "COMPATIBLE",
-    "checkpoint": "ACTIVATED",
+    "candidate_registration_transaction": "0x75c98fafa25d00cdb74c498e6ca3b2229b622f427820bf85b1c66364e97b702c",
+    "candidate_registration_status": "FINALIZED",
+    "registered_commit_sha": "7c94b1e9a8f47f1aa173f53e2a78b877c93494b0",
+    "registered_artifact_sha256": "4f2f7f1c870cc223e780f6ee5027fb3938f88678858436909471014c8e762f52",
+    "evidence_commit": "0ab599f7bcde727bc4939ad6d1fc27d4efd1b150",
+    "assessment_transaction": "0x4544c6e7c834bd058bc8cafa51f8c116a21c92b6fed24ea46d7678ea69bbeebc",
+    "assessment_status": "FINALIZED",
+    "semantic_verdict": "COMPATIBLE",
+    "provenance_status": "VERIFIED",
+    "assessment_digest": "92c9d4d14f22721eee7061836a8d09c279695b08866eb016c60322e232370cec",
+    "evidence_snapshot_digest": "8979ca24a2a3e790252a83c0bb2c89e79346d47a367d6f3302448080195a352a",
+    "registry_child_transaction": "0x4f9c28fbad17e1a7fcf36aae53104bfe92913797e2192b253d9668e02de6b501",
+    "registry_child_status": "FINALIZED",
+    "checkpoint_key": "frelease-papito-2026-v3:papito-positive-v3-20260929",
+    "checkpoint_state": "ACTIVATED",
     "checkpoint_reason": "FROZEN_POLICY_ACCEPTED_FINALIZED_VERDICT",
-    "evidence_snapshot_digest": "6da3fb89d3dbd4081fe6e681f60f8ac3046d546bd5321bb727428869257b68ef",
-    "assessment_digest": "6aead9e4baad911c4c72f5e59a108eac79da8c1506cd05220923d7c1e90adc29",
-    "evidence_receipts": [
-      {
-        "kind": "CHANGELOG",
-        "sha256": "ea71333641875b056108971cf00f9fc4464e65957b4aa6f249b78482b55c0555"
-      },
-      {
-        "kind": "API_SURFACE",
-        "sha256": "f8aa163ab3c5265facf49f9fde717025b717bec6dcdd667c9ab4a73c9b468f8b"
-      },
-      {
-        "kind": "TEST_REPORT",
-        "sha256": "7ca685875df36ee86308ada6d950b9f7000e0d34a9731468782aba28dc88c7b9"
-      },
-      {
-        "kind": "BUILD_MANIFEST",
-        "sha256": "b954aca246e346ccdb03e58b36db7b8368ecd0e45fe1e72aaf838f5e3d9e0ae2"
-      }
-    ],
-    "policy_head_sequence": 1,
-    "policy_head_candidate": "frelease-docs-52fd697"
+    "policy_head_candidate": "papito-positive-v3-20260929",
+    "policy_head_sequence": 1
   },
-  "artifact": {
-    "source_archive": ".release-artifacts/Frelease-52fd697-source.zip",
-    "sha256": "21220bd0db846f64832d8934ab6d183a81605558ecb2a3f42ca9a24ae1deba33",
-    "size_bytes": 72301
+  "negative_lifecycle": {
+    "candidate_key": "papito-wrong-commit-v3-20260929",
+    "sequence": 2,
+    "candidate_registration_transaction": "0xc6bb1024bb07cd3d919c9f08fa35f4af9553ebcbbe5824ee1f47f3653f362123",
+    "candidate_registration_status": "FINALIZED",
+    "registered_commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "registered_artifact_sha256": "4f2f7f1c870cc223e780f6ee5027fb3938f88678858436909471014c8e762f52",
+    "assessment_transaction": "0xddfb946bdb0aa09eeb5113f043e6f42a7b22c2467b480a18dab1b2d24162cbe8",
+    "assessment_status": "FINALIZED",
+    "observed_commit_sha": "7c94b1e9a8f47f1aa173f53e2a78b877c93494b0",
+    "observed_artifact_sha256": "4f2f7f1c870cc223e780f6ee5027fb3938f88678858436909471014c8e762f52",
+    "provenance_status": "COMMIT_MISMATCH",
+    "provenance_failure_reason": "FETCHED_COMMIT_DOES_NOT_MATCH_REGISTERED_CANDIDATE",
+    "semantic_verdict": "INCONCLUSIVE",
+    "assessment_digest": "c40fbc45497fe73588d80aa24ca877047519e22bf9291d67001a1cd8bfc5b280",
+    "registry_child_transaction": "0x4800a61487010099ddc7021e876f6f1841ce8e09d95c7b252907550571683d9a",
+    "registry_child_status": "FINALIZED",
+    "checkpoint_key": "frelease-papito-2026-v3:papito-wrong-commit-v3-20260929",
+    "checkpoint_state": "BLOCKED",
+    "checkpoint_reason": "VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY",
+    "final_policy_head_candidate": "papito-positive-v3-20260929",
+    "final_policy_head_sequence": 1
   },
-  "negative_paths": {
-    "artifact_replay_attempt": {
-      "candidate_key": "frelease-replay-52fd697",
-      "registration_sequence": 2,
-      "assessment_parent_transaction": "0x72e9082992da4eaa7abf7eb8b7723a1588e57fb2f9f9552a9ba27d6f7f79995b",
-      "assessment_parent_status": "FINALIZED",
-      "assessment_child_transaction": "0xa3b04e8c24bff781c6c67912b01b278722a23bcd698e9450ec98cb1e8def181d",
-      "assessment_child_status": "FINALIZED",
-      "checkpoint_readback": "BLOCKED",
-      "checkpoint_reason": "VERDICT_NOT_ACTIVATABLE_BY_FROZEN_POLICY",
-      "checkpoint_verdict": "INCONCLUSIVE",
-      "checkpoint_assessment_digest": "eb124931f45ae22b8dbd9e06047f79f3950b71130d86c49ad7aacc9841161758",
-      "checkpoint_recorded_at": "2026-09-27T18:42:55.347328Z",
-      "result": "LIVE_BLOCKED_CHECKPOINT_CONFIRMED_BUT_NOT_ARTIFACT_REPLAY_PROOF"
+  "noncanonical_pairs": [
+    {
+      "status": "HISTORICAL_LEGACY_NOT_CORRECTED",
+      "registry": "0x9658E192cdA77De11b7Fa173e7cd998791DB8578",
+      "evaluator": "0x8DA441a76AdEAE929C9DD9feBb77f0467da7e704",
+      "registry_deploy_tx": "0xe5cea33aaaee18afea079fd39b272551cf638f14236360c73253527f9d9fd927",
+      "evaluator_deploy_tx": "0x803d1bd66bab520f12560b4b6f2b1069e95c56547df392694414a5f591a94349",
+      "configuration_tx": "0xaf51e8c7726bd18899d1ccebaed66a148df6abe62a1ea0c1ee05dc5da63fb4a6"
     },
-    "artifact_replay_specific_live_proof": "NOT_EXECUTED_AFTER_COMPATIBLE_VERDICT",
-    "stale_sequence_live_proof": "NOT_EXECUTED",
-    "direct_mode_coverage": {
-      "artifact_replay": true,
-      "stale_sequence": true,
-      "policy_retirement": true
+    {
+      "status": "SUPERSEDED_PROVENANCE_PAIR_NOT_CANONICAL",
+      "registry": "0xf389E0A6ba1E7AE5953f68a08e5af60ED841aC84",
+      "evaluator": "0xb0dBe1Df1A9354765FaB9BBe9A83db784636aF7d",
+      "registry_deploy_tx": "0x834e313510c59c14379604b559c15ada57f43ba7a82127687903a50151deae56",
+      "evaluator_deploy_tx": "0xa40beef916673f172482ef2cfb0d87d648ccb0b471ce0b0dfb08273c977c08af",
+      "configuration_tx": "0x883b5f52e14ab70de19ec100bb45926ed077f227d0b5f2aea17f5764cf933bea"
+    },
+    {
+      "status": "SUPERSEDED_PROMPT_MISMATCH_PAIR_NOT_CANONICAL",
+      "registry": "0xEd98EA069DbF92C4DeAF8C46A8e1cd747BCa8260",
+      "evaluator": "0x4A5fc09c48fFeF927c187536FD540DE22f7971cb",
+      "registry_deploy_tx": "0x76461f98dd5e7fca3ea0b548bd3044accba7f419731081e56e229f06cf69d9b0",
+      "evaluator_deploy_tx": "0x3398946bd8e85efedfa413fd5ca49a60077a46b4dd63986a3103c11251e852a1",
+      "configuration_tx": "0x48b59839e8535969d37690bd16f9fbc162d994da576e32ae6fb035eb150d8857"
     }
-  },
+  ],
   "frontend_production": {
-    "vercel_check_status": "SUCCESS",
-    "checked_commit": "d4b65927f0ecc8a289e4dd63023b5920bdb3b229",
-    "vercel_status_target": "https://vercel.com/beatycat/frelease/CVmDkBaNu5qcJ9LbhHPfk2zReXKd",
-    "public_production_url": null,
-    "public_url_recorded": false,
-    "canonical_address_configuration_in_public_deployment": "NOT_INDEPENDENTLY_VERIFIED",
-    "interactive_injected_wallet_smoke": false
+    "status": "NOT_DEPLOYED",
+    "url": null
   },
-  "verification_note": "Core Studionet deployment and positive lifecycle are complete. Both deployed sources match local contract source after line-ending normalization. GitHub reports a successful Vercel check for the latest deployment configuration. No public frontend URL, live stale-sequence proof, compatible artifact-replay proof, or on-chain schema hash is invented."
+  "verification_note": "Final contract source was deployed as this canonical pair; both RPC-fetched source bodies match the local files after line-ending normalization. Configuration, schemas, positive and negative assessments, Registry child finality, checkpoints, and policy head were read back from Studionet. Other pairs are explicitly noncanonical; no schema hash or production URL is claimed."
 }
